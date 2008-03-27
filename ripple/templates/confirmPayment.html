@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load extratags %}
+{% block title %}{{SERVICE_NAME|escape}} - Confirm Payment{% endblock %}
+{% block content %}
+
+<h3>Confirm Payment</h3>
+{% include "info.html" %}
+<p>Please confirm your payment details and only proceed if everything is correct.</p>
+<form action="/pay/{{pmt.id}}/" name="pay" method="post">
+  <table>
+    <tr><td>Recipient's Email</td><td>{{pmt.recipient_email|escape}}</td></tr>
+    <tr><td>Payment Amount</td><td>{{pmt.amount|trimZeroes}}</td></tr>
+    <tr><td>Payment Units</td><td>{{pmt.currency.long_name|escape}}</td></tr>
+    <tr><td>Description</td>
+      <td>{{pmt.description|escape|linebreaksbr}}</td>
+    <tr><td>&nbsp;</td><td><input class="button" name="submit" type="submit" value="Proceed"/></td></tr>
+  </table>
+</form>
+
+<p><a href="/payments/{{pmt.id}}/edit/">Change details of this payment</a></p>
+<p><a href="/payments/{{pmt.id}}/cancel/">Cancel payment</a></p>
+
+{% endblock %}

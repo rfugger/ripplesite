@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load extratags %}
+{% block title %}{{SERVICE_NAME|escape}} - Connections{% endblock %}
+{% block content %}
+<h3>Connections</h3>
+
+{% include "info.html" %}
+
+<h4>Connect to more people</h4>
+<form action="/offer/" name="creditOffer" method="post">
+  <input type="hidden" name="phase" value="list_emails"/>
+  Enter the email addresses of people you would like to offer credit to:<br/>
+  <textarea name="emailText" rows="2" cols="40" wrap="soft"></textarea><br/>
+  <input class="button" type="submit" value="Next"/>
+</form>
+
+<h4>Connection accounts</h4>
+<p>These are the accounts of connections you have already established on the system.  Click the links to view each account individually.</p>
+{% if accountCurrencies %}
+<table class="chart">
+{% for cur in accountCurrencies %}
+  <tr class="spantitle"><td colspan="5">{{cur.long_name|escape}} accounts</td></tr>
+  <tr><th>ID</td><th>Name</th><th>Lower limit</th><th>Balance</th><th>Upper limit</th></tr>
+  {% for acct in cur.accts %}
+  <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
+    <td class="num"><a href="/accounts/{{acct.id}}/">{{acct.shared_data_id}}</a></td>
+    <td><a href="/accounts/{{acct.id}}/">{{acct.name|escape}}</a></td>
+    <td class="num">-{{acct.iou_limit|myStrFormat:".2f"}}</td>
+    <td class="num"><b>{{acct.balance|myStrFormat:".2f"}}</b></td>
+    <td class="num">{{acct.get_partner_acct.iou_limit|myStrFormat:".2f"}}</td>
+    <td><a href="/accounts/{{acct.id}}/">details
+      {% if acct.shared_data.node_to_confirm_id %}{% ifequal userNode.id acct.shared_data.node_to_confirm_id %}
+        (new rate proposed)
+      {% endifequal %}{% endif %}
+    </a></td>
+  </tr>
+  {% endfor %}
+  <tr><th colspan="2">Totals:</th><th class="num">-{{cur.lowerLimit|myStrFormat:".2f"}}</th>
+    <th class="num"><b>{{cur.balance|myStrFormat:".2f"}}</b></th>
+    <th class="num">{{cur.upperLimit|myStrFormat:".2f"}}</th></tr>
+{% endfor %}
+</table>
+{% else %}<p><i>No accounts yet.  To create accounts, you must invite people to connect with you above.</i></p>
+{% endif %}
+
+<a name="offers"></a>
+<h4>Outstanding invitations</h4>
+<p>These the invitations to connect you have received and sent in the form of a proposed credit limit.
+You may accept or reject offers you have received, and withdraw offers you have sent.</p>
+<table class="chart">
+  <tr class="spantitle"><td colspan="4">Offers of credit received</td></tr>
+  {% if receivedOffers %}
+    <tr><th>From</th><th>Amount</th><th>Interest Rate</th><th>Action</th></tr>
+    {% for offer in receivedOffers %}
+      <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
+        <td>{{offer.initiator.getPrimaryEmail|escape}}</td>
+        <td>{{offer.currency.short_name|escape}} {{offer.amount|myStrFormat:".2f"}}</td>
+        <td>{{offer.interest_rate}}%</td>
+        <td><a href="/offers/{{offer.id}}/accept/">accept</a> |
+          <a href="/leaveNote/{{offer.id}}/">reject</a></td>
+      </tr>
+    {% endfor %}
+  {% else %}<tr><td colspan="4"><i>No new offers of credit received.</i></td></tr>
+  {% endif %}
+
+  <tr class="spantitle"><td colspan="4">Offers of credit sent</td></tr>
+  {% if sentOffers %}
+    <tr><th>To</th><th>Amount</th><th>Interest Rate</th><th>Action</th></tr>
+    {% for offer in sentOffers %}
+      <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
+        <td>{{offer.recipient_email|escape}}</td>
+        <td>{{offer.currency.short_name|escape}} {{offer.amount|myStrFormat:".2f"}}</td>
+        <td>{{offer.interest_rate}}%</td>
+        <td><a href="/offers/{{offer.id}}/withdraw/">withdraw offer</a></td>
+      </tr>
+    {% endfor %}
+  {% else %}<tr><td colspan="4"><i>You have made no recent offers.</i></td></tr>
+  {% endif %}
+  
+  <tr class="spantitle"><td colspan="4">Interest rate-change proposals</td></tr>
+  {% if rateProposals %}
+    <tr><th>Account ID</th><th>Name</th><th>Interest Rate</th><th>Action</th></tr>
+    {% for acct in rateProposals %}
+      <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
+        <td><a href="/accounts/{{acct.id}}/">{{acct.shared_data_id}}</a></td>
+        <td><a href="/accounts/{{acct.id}}/">{{acct.name|escape}}</a></td>
+        <td>{{acct.shared_data.displayProposedRate}}%</td>
+        <td><a href="/accounts/{{acct.id}}/rate/accept/">accept</a> |
+            <a href="/accounts/{{acct.id}}/rate/reject/">reject</a>
+        </td>
+      </tr>
+    {% endfor %}
+  {% else %}<tr><td colspan="4"><i>You have no accounts where your partner has proposed an interest rate change.</i></td></tr>
+  {% endif %}
+</table>
+
+<p><a href="/summary/">Back to Summary</a></p>
+{% endblock %}

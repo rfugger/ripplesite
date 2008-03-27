@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{SERVICE_NAME|escape}} - Donate{% endblock %}
+{% block content %}
+<h3>Donate</h3>
+
+<p>Ripplepay.com will always be free to use, and there are <a href="http://ripple.sourceforge.net/">other free versions of Ripple in the works</a>.  You can help support Ripple's development by making a donation, however small
+or large.</p>
+
+<p>Your donation will mainly go towards feeding and housing Ryan Fugger, Ripple's
+designer and main developer.</p>
+
+<p>Ways you can donate:</p>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="donations@ripplepay.com">
+<input type="hidden" name="item_name" value="Ripple donation">
+<input type="hidden" name="no_note" value="1">
+<input type="hidden" name="currency_code" value="CAD">
+<input type="hidden" name="tax" value="0">
+<input type="hidden" name="bn" value="PP-DonationsBF">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but04.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+<p>Using Paypal by clicking the button above, or by sending money to
+donations@ripplepay.com.</p>
+
+<p><a href="http://3082204.e-gold.com" target=_top>
+<img src=http://www.e-gold.com/gif/paywith.gif border=0 Alt="Pay Now with e-gold..."></a></p>
+
+<p>To e-gold account <a href="http://3082204.e-gold.com/">3082204</a>.</p>
+
+<p>Or, last but not least, by Ripple to 
+<script type="text/javascript" language="javascript">
+document.write(String.fromCharCode(60,97,32,104,114,101,102,61,34,47,112,97,121,85,115,101,114,47,49,54,52,34,62,100,111,110,97,116,105,111,110,115,64,114,105,112,112,108,101,112,97,121,46,99,111,109,32,111,114,32,105,110,102,111,64,114,105,112,112,108,101,112,97,121,46,99,111,109,60,47,97,62))
+</script>
+</p>
+
+<p>Thanks for your support.</p>
+
+{% endblock %}

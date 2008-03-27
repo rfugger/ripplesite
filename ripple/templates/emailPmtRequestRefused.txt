@@ -1,0 +1,16 @@
+This is notification that your Ripple payment request to {{req.payer_email}} at {{SERVICE_NAME}} has been refused.
+
+Request details:
+
+Date: {{req.date|date:"M j, Y"}}
+Requested payer: {{req.payer_email}}
+Amount: {{req.amount|stringformat:".2f"}}
+Payment units: {{req.currency.long_name}}
+
+{% if req.description %}Description:
+
+----------
+{{req.description}}
+----------
+
+{% endif %}{% include "sig.txt" %}

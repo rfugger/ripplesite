@@ -1,0 +1,13 @@
+Your invitation and offer of credit to {{offer.recipient_email}} on the Ripple system at {{SERVICE_NAME}} was not accepted.
+
+{% if note %}The offer recipient has included this note:
+
+----------
+{{note}}
+----------
+
+{% else %}Please contact {{offer.recipient_email}} if you have any questions regarding your offer.
+
+{% endif %}Thank you for using {{SERVICE_NAME}}.
+
+{% include "sig.txt" %}

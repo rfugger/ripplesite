@@ -1,0 +1,76 @@
+8
+
+dir
+283
+http://svn.ripplepay.com/ripplesite/ripple
+http://svn.ripplepay.com
+
+
+
+2007-11-08T20:39:12.656108Z
+242
+ryan
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+44be43d1-7ff5-0310-8775-95a742c4678a
+
+media
+dir
+
+__init__.py
+file
+
+
+
+
+2008-03-12T02:04:58.000000Z
+d41d8cd98f00b204e9800998ecf8427e
+2007-03-03T20:30:47.494587Z
+163
+ryan
+
+templatetags
+dir
+
+models.py
+file
+
+
+
+
+2008-03-12T02:04:58.000000Z
+b986e60afa9a92a72dca1f6df6c6ae41
+2007-10-29T04:48:48.107176Z
+234
+ryan
+
+urls.py
+file
+
+
+
+
+2008-03-12T02:04:58.000000Z
+10063629e5ef7086f42202a9e877ec85
+2007-10-29T04:48:48.107176Z
+234
+ryan
+
+views
+dir
+
+templates
+dir
+

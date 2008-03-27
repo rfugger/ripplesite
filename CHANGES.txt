@@ -1,0 +1,5 @@
+Changes in RippleSite 0.2
+-------------------------
+
+* ability to charge interest on account balances
+* proper escaping to prevent XSS attacks

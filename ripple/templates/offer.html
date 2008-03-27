@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}{{SERVICE_NAME|escape}} - Make New Connections{% endblock %}
+{% block content %}
+
+<h3>Make New Connections</h3>
+
+{% include "info.html" %}
+
+{% if rows  %}
+<p>Enter a maximum credit limit for each person you wish to connect to.
+A good credit limit to choose is the amount you would lend them and feel comfortable
+that they would be able to pay it back.
+The system will send an invitation email to each person.</p>
+<form action="/offer/" method="post">
+<table>
+  <input type="hidden" name="phase" value="make_offers"/>
+  <input type="hidden" name="count" value="{{count}}"/>
+  <tr><th>Email address</th><th>Credit limit</th><th>Units of account</th></tr>
+  {% for row in rows %}
+  <tr><td><input type="hidden" name="email_{{forloop.counter0}}" value="{{row.email|escape}}"/>{{row.email|escape}}</td>
+    <td><input type="text" name="amount_{{forloop.counter0}}" value="{{row.amount|escape}}"/></td>
+    <td><select name="currency_{{forloop.counter0}}">
+    {% for currency in currencies %}
+      <option value="{{currency.short_name|escape}}" 
+        {% if row.currency %}
+          {% ifequal currency.short_name row.currency %}selected{% endifequal %}
+        {% else %}
+          {% ifequal currency.id userNode.display_units_id %}selected{% endifequal %}
+        {% endif %}>
+        {{currency.long_name|escape}}</option>
+    {% endfor %}</select></td>
+    <td><nobr>at <input type="text" name="interest_{{forloop.counter0}}" 
+        value="{{row.interest|escape}}" size="5"/>%</nobr></td>
+    <td><i>{{row.error}}</i></td>
+  </tr>
+  {% endfor %}
+</table>
+<p>Enter a note to be included in the invitation{{count|pluralize}}:</p>
+<textarea name="note" rows="2" cols="40" wrap="soft">{% if note %}{{note|escape}}{% endif %}</textarea><br/>
+<input class="button" type="submit" value="Make Offer{{count|pluralize}}"/>
+</form>
+{% endif %}
+<p><a href="/summary/">Back to Summary</a></p>
+
+{% endblock %}

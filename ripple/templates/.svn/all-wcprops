@@ -1,0 +1,281 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/!svn/ver/242/ripplesite/ripple/templates
+END
+paymentLinkChart.html
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/163/ripplesite/ripple/templates/paymentLinkChart.html
+END
+passwordReminderSent.html
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/163/ripplesite/ripple/templates/passwordReminderSent.html
+END
+forgotPassword.html
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/163/ripplesite/ripple/templates/forgotPassword.html
+END
+essay.html
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/163/ripplesite/ripple/templates/essay.html
+END
+emailAcctClosed.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/163/ripplesite/ripple/templates/emailAcctClosed.txt
+END
+accountList.html
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/163/ripplesite/ripple/templates/accountList.html
+END
+error.html
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/236/ripplesite/ripple/templates/error.html
+END
+info.html
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/163/ripplesite/ripple/templates/info.html
+END
+emailRejectRateProposal.txt
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/229/ripplesite/ripple/templates/emailRejectRateProposal.txt
+END
+loginForm.html
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/163/ripplesite/ripple/templates/loginForm.html
+END
+summary.html
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/236/ripplesite/ripple/templates/summary.html
+END
+resetPasswordSuccess.html
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/163/ripplesite/ripple/templates/resetPasswordSuccess.html
+END
+paymentDetail.html
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/242/ripplesite/ripple/templates/paymentDetail.html
+END
+profile.html
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/163/ripplesite/ripple/templates/profile.html
+END
+paymentForm.html
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/236/ripplesite/ripple/templates/paymentForm.html
+END
+registrationSuccess.html
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/163/ripplesite/ripple/templates/registrationSuccess.html
+END
+emailPmtRequestReceived.txt
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/235/ripplesite/ripple/templates/emailPmtRequestReceived.txt
+END
+faq.html
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/163/ripplesite/ripple/templates/faq.html
+END
+rejectionNote.html
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/236/ripplesite/ripple/templates/rejectionNote.html
+END
+registration.html
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/163/ripplesite/ripple/templates/registration.html
+END
+donate.html
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/163/ripplesite/ripple/templates/donate.html
+END
+base.html
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/234/ripplesite/ripple/templates/base.html
+END
+about.html
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/163/ripplesite/ripple/templates/about.html
+END
+emailInterestRateProposal.txt
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/163/ripplesite/ripple/templates/emailInterestRateProposal.txt
+END
+emailInvitationRejected.txt
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/163/ripplesite/ripple/templates/emailInvitationRejected.txt
+END
+emailPmtSent.txt
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/163/ripplesite/ripple/templates/emailPmtSent.txt
+END
+emailAcceptRateProposal.txt
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/229/ripplesite/ripple/templates/emailAcceptRateProposal.txt
+END
+accountDetail.html
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/236/ripplesite/ripple/templates/accountDetail.html
+END
+confirmClose.html
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/236/ripplesite/ripple/templates/confirmClose.html
+END
+home.html
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/236/ripplesite/ripple/templates/home.html
+END
+construction.html
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/163/ripplesite/ripple/templates/construction.html
+END
+emailPmtReceived.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/163/ripplesite/ripple/templates/emailPmtReceived.txt
+END
+confirmPayment.html
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/236/ripplesite/ripple/templates/confirmPayment.html
+END
+contact.html
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/163/ripplesite/ripple/templates/contact.html
+END
+sig.txt
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/163/ripplesite/ripple/templates/sig.txt
+END
+paymentChart.html
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/163/ripplesite/ripple/templates/paymentChart.html
+END
+emailInvitationAccepted.txt
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/163/ripplesite/ripple/templates/emailInvitationAccepted.txt
+END
+offer.html
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/163/ripplesite/ripple/templates/offer.html
+END
+confirmEmail.html
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/163/ripplesite/ripple/templates/confirmEmail.html
+END
+resetPassword.html
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/163/ripplesite/ripple/templates/resetPassword.html
+END
+emailForgotPassword.txt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/163/ripplesite/ripple/templates/emailForgotPassword.txt
+END
+emailInvitation.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/163/ripplesite/ripple/templates/emailInvitation.txt
+END
+login.html
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/163/ripplesite/ripple/templates/login.html
+END
+paymentList.html
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/234/ripplesite/ripple/templates/paymentList.html
+END
+emailPmtRequestRefused.txt
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/235/ripplesite/ripple/templates/emailPmtRequestRefused.txt
+END
+emailConfirmation.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/163/ripplesite/ripple/templates/emailConfirmation.txt
+END

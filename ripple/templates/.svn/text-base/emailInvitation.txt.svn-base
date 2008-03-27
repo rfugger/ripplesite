@@ -1,0 +1,25 @@
+{{userNode.name}} <{{userNode.getPrimaryEmail}}> has offered you a credit limit of {{row.amount|stringformat:".2f"}} {{currency.long_name}}s on the Ripple credit network at {{SERVICE_NAME}}, where credit from family, friends, and trusted associates can be used as currency.
+{% if note %}
+{{userNode.name}} has included the following note in the invitation:
+
+----------
+{{note}}
+----------
+{% endif %}
+To accept the offer, go to: 
+http://{{SITE_NAME}}/register/
+
+Or if you are already a member: 
+http://{{SITE_NAME}}/login/
+
+Once you have signed up and logged in, you will find a new connection waiting for you on your Summary page.  Click the "accept" link to start your account with {{userNode.name}}.
+
+Please note that you must have the email address {{row.email}} in your Ripple profile to see this offer of credit on your Summary page.  You may either register using this email address, or add it to your profile after you are registered.
+
+To learn more about Ripple, please visit: 
+http://{{SITE_NAME}}/about/
+or http://ripple.sourceforge.net/
+
+Thank you.
+
+{% include "sig.txt" %}

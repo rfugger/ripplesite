@@ -1,0 +1,7 @@
+{{acct.partner.name}} has not accepted your proposal to charge {{proposed_rate}}% on outstanding balances on your shared account #{{acct.shared_data_id}} ({{acct.name}}).  The interest rate on the account will remain at {{acct.shared_data.displayRate}}%.
+
+You can view your account details here:
+
+http://{{SITE_NAME}}/accounts/{{acct.id}}/
+
+{% include "sig.txt" %}

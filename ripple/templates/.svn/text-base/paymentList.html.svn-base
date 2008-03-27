@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load extratags %}
+{% block title %}{{SERVICE_NAME|escape}} - Payments{% endblock %}
+{% block content %}
+
+<h3>Payments</h3>
+{% include "info.html" %}
+<p><a href="/paymentForm/">Pay another user</a> |
+  <a href="/requestPayment/">Request payment</a></p>
+{% if payments %}
+{% include "paymentChart.html" %}
+{% else %}
+<p><i>No payments made or received.</i></p>
+{% endif %}
+
+<h4>Payment requests</h4>
+
+{% if receivedPaymentRequests %}
+<table class="chart">
+  <tr class="spantitle"><td colspan="4">Payment requests received</td></tr>
+  <tr><th>Date</th><th>From</th><th>Amount</th><th>Action</th></tr>
+  {% for req in receivedPaymentRequests %}
+    <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
+      <td>{{ req.date|date:"d M Y" }}</td>
+      <td>{{ req.recipient_email }}</td>
+      <td>{{ req.amount|myStrFormat:".2f" }}</td>
+      <td><a href="/payments/{{ req.id }}/edit/">review</a></td>
+    </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p><i>No new payment requests received.</i></p>
+{% endif %}
+
+{% if sentPaymentRequests %}
+<table class="chart">
+  <tr class="spantitle"><td colspan="4">Payment requests sent</td></tr>
+  <tr><th>Date</th><th>To</th><th>Amount</th><th>Action</th></tr>
+  {% for req in sentPaymentRequests %}
+    <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
+      <td>{{ req.date|date:"d M Y" }}</td>
+      <td>{{ req.payer_email }}</td>
+      <td>{{ req.amount|myStrFormat:".2f" }}</td>
+      <td><a href="/payments/{{ req.id }}/editRequest/">review</a></td>
+    </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p><i>No payment requests sent.</i></p>
+{% endif %}
+
+<p><a href="/summary/">Back to Summary</a></p>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}{{SERVICE_NAME|escape}} - User Profile{% endblock %}
+{% block content %}
+<h3>My Profile</h3>
+
+{% include "info.html" %}
+<p>Enter new values and click "Save changes" to change. Leave a field the same or blank for no change.</p>
+<form action="/profile/" method="post">
+<table class="layout">
+  <tr><td>Username</td><td>{{userNode.username|escape}}</td></tr>
+  <tr><td><label for="name">Full name</label></td><td><input type="text" name="name" value="{{userNode.name|escape}}"/></td></tr>
+  <!--<tr><td><label for="email">Primary email</label></td><td><input type="text" name="email" value="{{userNode.getPrimaryEmail|escape}}"/></td></tr>-->
+  <tr><td><label for="password">New password</label></td><td><input type="password" name="password"/></td></tr>
+  <tr><td><label for="confirmPassword">Confirm new password</label></td><td><input type="password" name="confirmPassword"/></td></tr>
+  <tr><td><label for="displayUnits">Default display units</label></td>
+    <td><select name="displayUnits">
+      <option value="None" {% if not displayUnits %}selected="selected"{% endif %}>[None]</option>
+      {% for unit in units %}
+      <option value="{{unit.short_name|escape}}" {% ifequal unit displayUnits %}selected{% endifequal %}>
+        {{unit.long_name|escape}}</option>
+      {% endfor %}
+    </select></td></tr>
+  <tr><td><label for="convert">Convert units as<br/>needed for payments?</label><br/>(<a href="/faq/#units_change"><i>What is this for?</i></a>)</td>
+    <td><input type="radio" name="convert" value="yes" {% if userNode.do_conversions %}checked="checked"{% endif %}>Yes (recommended)</input><br/>
+    <input type="radio" name="convert" value="no" {% if not userNode.do_conversions %}checked="checked"{% endif %}>No</input></td>
+  <tr><td>&nbsp;</td><td><input class="button" type="submit" value="Save changes"/></td></tr>
+</table></form>
+
+<h4>Email addresses</h4>
+<table class="chart">
+  <tr><th>Email</th><th>Status</th><th>Actions</th>
+  {% for email in emails %}
+    <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
+      <td>{{email.email|escape}}</td>
+      <td>{% if email.confirmed %}confirmed{% else %}unconfirmed{% endif %}{% if email.primary %}, primary{% endif %}</td>
+      <td>{% if email.primary %}{% else %}
+        {% if email.confirmed %}
+          <a href="/emails/{{email.id}}/makePrimary/">make primary</a> 
+        {% else %}
+          <a href="/emails/{{email.id}}/sendConfirmation/">resend confirmation</a>
+        {% endif %}
+        | <a href="/emails/{{email.id}}/delete/">delete</a>
+        {% endif %}</td>
+  {% endfor %}
+</table>
+<br/>
+<form action="/emails/add/" method="post">
+  Add another email
+  <input type="text" name="addEmail"/>
+  <input class="button" type="submit" value="Add"/>
+</form>
+
+<p><a href="/summary/">Back to Summary</a></p>
+{% endblock %}

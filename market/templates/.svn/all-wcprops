@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/!svn/ver/234/ripplesite/market/templates
+END
+new_ad.html
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/232/ripplesite/market/templates/new_ad.html
+END
+view_ad.html
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/234/ripplesite/market/templates/view_ad.html
+END
+ad_list.html
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/232/ripplesite/market/templates/ad_list.html
+END

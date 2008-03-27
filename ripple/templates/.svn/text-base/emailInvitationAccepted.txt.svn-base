@@ -1,0 +1,10 @@
+{{offer.recipient_email}} has accepted your invitation to connect on the Ripple system at {{SERVICE_NAME}}.  This means you will now be able to track your mutual obligations and take advantage of each other's connections to make payments to other users of the Ripple network.
+
+Your new connection account has ID number {{acct.shared_data.id}}.
+
+You can view your new account by going to
+http://{{SITE_NAME}}/accounts/{{acct.id}}/
+
+There you may name your account and adjust credit limits for yourself and your new Ripple partner.
+
+{% include "sig.txt" %}

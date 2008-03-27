@@ -1,0 +1,11 @@
+You are receiving this email because you have registered email address {{email}} at {{SERVICE_NAME}}.  Please click the following link to confirm:
+
+http://{{SITE_NAME}}/confirmEmail/{{code}}/
+
+If you have not registered this email address at {{SERVICE_NAME}}, please report the abuse of our system by replying to this email, or visiting:
+
+http://{{SITE_NAME}}/contact/
+
+Thank you.
+
+{% include "sig.txt" %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{SERVICE_NAME|escape}} - Registration Confirmed{% endblock %}
+{% block content %}
+<h3>Registration Confirmed</h3>
+
+<p>Your email address has been confirmed.  You may now log in by entering your
+password.</p>
+
+{% include "loginForm.html" %}
+
+{% endblock %}

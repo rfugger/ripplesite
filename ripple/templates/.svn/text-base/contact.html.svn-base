@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title%}{{SERVICE_NAME|escape}} - Contact{% endblock %}
+{% block content %}
+<h3>Contact Us</h2>
+<p>
+<a href="mailto:{{ ADMIN_EMAIL }}">Contact {{ ADMIN_NAME }}</a>
+with any questions, concerns, or other feedback.</p>
+{% endblock %}

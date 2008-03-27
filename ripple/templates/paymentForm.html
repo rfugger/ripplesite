@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load extratags %}
+{% block title %}{{SERVICE_NAME|escape}} -
+  {% if is_request %}Request{% else %}Make{% endif %} Payment
+{% endblock %}
+{% block content %}
+
+<h3>{% if is_request %}Request{% else %}Make{% endif %} Payment</h3>
+{% include "info.html" %}
+
+{% if paymentUnits %}
+{% if is_request %}
+<p>Request value through the Ripple network from another Ripple user.</p>
+{% else %}
+<p>Transfer value through the Ripple network to another Ripple user.</p>
+{% endif %}
+
+<form action="." method="post">
+  <table>
+    <input type="hidden" name="pmtId" value={% if pmtId %}"{{pmtId}}"{% else %}"None"{% endif %}/>
+    <tr><td>{% if is_request %}Payer's{% else %}Recipient's{% endif %} Email</td><td><input type="text" name="email" value="{{email|escape}}"/></td></tr>
+    <tr><td>Payment Amount</td><td><input type="text" name="amount" value="{{amount|trimZeroes|escape}}"/></td></tr>
+    <tr><td>Payment Units</td>
+      <td><select name="currency">
+        {% for unit in paymentUnits %}
+        <option value="{{unit.short_name|escape}}"{% ifequal unit.id selectedUnitId %} selected{% endifequal %}>
+          {{unit.long_name|escape}}</option>
+        {% endfor %}
+      </select></td></tr>
+    <tr><td>Description<br/>(no HTML)</td>
+      <td><textarea name="description" rows="2" cols="40" wrap="hard">{% if description %}{{description|escape}}{% endif %}</textarea></td>
+    <tr><td>&nbsp;</td>
+      <td><input class="button" type="submit" 
+                 value="{% if is_request %}Submit{% else %}Make payment{% endif %}"/></td></tr>
+  </table>
+</form>
+{% if pmtId %}
+<p><a href="/payments/{{pmtId}}/cancel/">Cancel this payment
+  {% if is_request %}request{% endif %}</a></p>
+{% endif %}
+{% else %}
+<p>You must have some connections before you are able to 
+{% if is_request %}request{% else %}make{% endif %} a payment.</p>
+<p><a href="/accounts/">Make new connections</a></p>
+{% endif %}
+<p><a href="/summary/">Back to Summary</a></p>
+
+{% endblock %}

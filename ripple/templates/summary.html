@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+{% load extratags %}
+{% block title %}{{SERVICE_NAME|escape}} - Summary{% endblock %}
+{% block content %}
+{% block script %}
+<script type="text/javascript" src="/media/common.js"></script>
+{% endblock %}
+<h3>Summary</h3>
+
+{% include "info.html" %}
+
+<p>You are connected to <a href="/accounts/"><b>{{numAccounts}}</b> other Ripple user{{numAccounts|pluralize}}.</a></p>
+
+<h4>New connections</h4>
+<p>Here you will find a list of those who have recently invited you to connect with them.
+You may accept or reject invitations by clicking the links.</p>
+
+{% if receivedOffers %}
+<table class="chart">
+  <tr class="spantitle"><td colspan="4">Offers of credit received</td></tr>
+  <tr><th>From</th><th>Amount</th><th>Interest Rate</th><th>Action</th></tr>
+  {% for offer in receivedOffers %}
+    <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
+      <td>{{offer.initiator.getPrimaryEmail|escape}}</td>
+      <td>{{offer.currency.short_name|escape}} {{offer.amount|myStrFormat:".2f"}}</td>
+      <td>{{offer.interest_rate}}%</td>
+      <td><a href="/offers/{{offer.id}}/accept/">accept</a> |
+        <a href="/leaveNote/{{offer.id}}/">reject</a></td>
+    </tr>
+  {% endfor %}
+</table>
+{% else %}<p><i>No new offers of credit received.</i></p>
+{% endif %}
+<p><a href="/accounts/#offers">View sent invitations</a></p>
+
+{% if rateProposals %}
+<table class="chart">
+  <tr class="spantitle"><td colspan="4">Interest rate-change proposals</td></tr>
+  <tr><th>Account ID</th><th>Name</th><th>Interest Rate</th><th>Action</th></tr>
+  {% for acct in rateProposals %}
+    <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
+      <td><a href="/accounts/{{acct.id}}/">{{acct.shared_data_id}}</a></td>
+      <td><a href="/accounts/{{acct.id}}/">{{acct.name|escape}}</a></td>
+      <td>{{acct.shared_data.displayProposedRate}}%</td>
+      <td><a href="/accounts/{{acct.id}}/rate/accept/">accept</a> |
+          <a href="/accounts/{{acct.id}}/rate/reject/">reject</a>
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+{% if paymentRequests %}
+<table class="chart">
+  <tr class="spantitle"><td colspan="4">Payment requests received</td></tr>
+  <tr><th>Date</th><th>From</th><th>Amount</th><th>Action</th></tr>
+  {% for req in paymentRequests %}
+    <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
+      <td>{{ req.date|date:"d M Y" }}</td>
+      <td>{{ req.recipient_email }}</td>
+      <td>{{ req.amount|myStrFormat:".2f" }}</td>
+      <td><a href="/payments/{{ req.id }}/edit/">review</a></td>
+    </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<a name="offer"></a>
+<h4>Connect to more people</h4>
+<p>You must create connection accounts with others in order to send and receive payment.</p>
+<form action="/offer/" name="creditOffer" method="post">
+  <input type="hidden" name="phase" value="list_emails"/>
+  First, enter the email addresses of people you would like to connect to:<br/>
+  <textarea name="emailText" rows="2" cols="40" wrap="soft"></textarea><br/>
+  <input class="button" type="submit" value="Next"/>
+</form>
+
+<h4>Overall balance & available funds</h4>
+{% if accountUnits %}
+{% if convertibleUnits %}
+  <form>Convert amounts to: <select id="unitSelect" onchange="setDisplayUnits(this)">
+  <option value="-1">No conversion</option>
+  {% for unit in convertibleUnits %}
+    <option value="{{forloop.counter0}}" {% ifequal unit.id userNode.display_units_id %}selected="selected"{% endifequal %}>{{unit.long_name|escape}}</option>
+  {% endfor %}</select></form>
+  <noscript><i>This menu requires javascript to function.</i></noscript>
+{% endif %}<br/>
+<table class="chart">
+  <tr><th>Account units</th><th>Balance</th><th>Available for<br/>making payment</th><th>Available for<br/>receiving payment</th></tr>
+  {% for unit in accountUnits %}
+  <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
+    <td>{{unit.long_name|escape}} Accounts</td>
+    <td id="{{unit.short_name|escape}}_balance" class="num">{% if unit.display %}{{unit.short_name|escape}} {{unit.displayBalance|myStrFormat:".2f"}}{% else %}--{% endif %}</td>
+    <td id="{{unit.short_name|escape}}_availOutCredit" class="num">{% if unit.display %}{{unit.displayOutCredit|myStrFormat:".2f"}}{% else %}--{% endif %}</td>
+    <td id="{{unit.short_name|escape}}_availInCredit" class="num">{% if unit.display %}{{unit.displayInCredit|myStrFormat:".2f"}}{% else %}--{% endif %}</td>
+  </tr>{% endfor %}
+  <tr id="totalRow" {% if not userNode.display_units_id %}style="display:none;"{% endif %}>
+    <th>Totals</th>
+    <th id="totalBalance" class="num">{{userNode.display_units.short_name|escape}} {{totalBalance|myStrFormat:".2f"}} </th>
+    <th id="totalOutCredit" class="num">{{totalOutCredit|myStrFormat:".2f"}} </th>
+    <th id="totalInCredit" class="num">{{totalInCredit|myStrFormat:".2f"}} </th>
+  </tr>
+</table>
+{% else %}
+<p><i>No accounts yet.</i> <a href="/accounts/">Connect to those you trust</a></p>
+{% endif %}
+
+<p><a href="/accounts/">View and edit connections</a></p>
+
+<h4>Recent payments</h4>
+
+{% if accountUnits %}
+<p><a href="/paymentForm/">Pay another user</a> | 
+  <a href="/requestPayment/">Request payment</a></p>
+{% endif %}
+
+{% if payments %}
+{% include "paymentChart.html" %}
+{% else %}
+<p><i>No recent activity</i></p>
+{% endif %}
+<p><a href="/payments/">View past payments</a></p>
+
+{% if convertibleUnits %}
+<script type="text/javascript"><!--
+function unit(name, symbol, value, balance, availOutCredit, availInCredit)
+{
+  this.name = name;
+  this.symbol = symbol;
+  this.value = value;
+  this.balance = balance;
+  this.availOutCredit = availOutCredit;
+  this.availInCredit = availInCredit;
+}
+
+{% for unit in convertibleUnits %}
+  convertibleUnits[{{forloop.counter0}}] = new unit('{{unit.short_name}}', '{{unit.symbol}}', {{unit.value}}, 0, 0, 0);
+{% endfor %}
+{% for unit in accountUnits %}
+  accountUnits[{{forloop.counter0}}] = new unit('{{unit.short_name}}', '{{unit.symbol}}', {{unit.value}}, {{unit.balance}}, {{unit.availOutCredit}}, {{unit.availInCredit}});
+{% endfor %}
+/*
+{% if node.display_units_id %}
+var defaultUnits, i;
+for(i = 0; i < convertibleUnits.length; i++)
+  if (convertibleUnits[i].name == '{{node.display_units.short_name}}')
+  {
+    defaultUnits = convertibleUnits[i];
+    break;
+  }
+{% else %}
+var defaultUnits = null;
+{% endif %}
+*/
+function recalculate()
+{
+  if (document.getElementById)
+  {
+    var newBalance, newOutCredit, newInCredit;
+    var totalBalance = 0.0, totalOutCredit = 0.0, totalInCredit = 0.0;
+    var i;
+    for(i = 0; i < accountUnits.length; i++)
+    {
+      // calculate variables to display
+      if (selectedUnits)
+      { // convert to selected units
+        // given values in account units
+        if (accountUnits[i].value > 0.0) // check if we can convert account units
+        {
+          newBalance = accountUnits[i].balance * accountUnits[i].value / selectedUnits.value;
+          newOutCredit = accountUnits[i].availOutCredit * accountUnits[i].value / selectedUnits.value;
+          newInCredit = accountUnits[i].availInCredit * accountUnits[i].value / selectedUnits.value;
+        } else { // can't convert - set amounts to '--' and continue
+          document.getElementById(accountUnits[i].name + '_balance').firstChild.data = '--';
+          document.getElementById(accountUnits[i].name + '_availOutCredit').firstChild.data = '--';
+          document.getElementById(accountUnits[i].name + '_availInCredit').firstChild.data = '--';
+          continue;
+        }
+
+        // add to sum totals
+        totalBalance += newBalance;
+        totalOutCredit += newOutCredit;
+        totalInCredit += newInCredit;
+
+      } else { // convert to account units (no need to sum)
+        // given values in account units
+        newBalance = accountUnits[i].balance;
+        newOutCredit = accountUnits[i].availOutCredit;
+        newInCredit = accountUnits[i].availInCredit;
+      }
+
+      // change document to display variables
+      var unitStr;
+      if (selectedUnits)
+        unitStr = selectedUnits.name + ' ';
+      else
+        unitStr = accountUnits[i].name + ' ';
+      document.getElementById(accountUnits[i].name + '_balance').firstChild.data = unitStr + formatNumber(newBalance, precision, '', false);
+      document.getElementById(accountUnits[i].name + '_availOutCredit').firstChild.data = formatNumber(newOutCredit, precision, '', false);
+      document.getElementById(accountUnits[i].name + '_availInCredit').firstChild.data = formatNumber(newInCredit, precision, '', false);
+    }
+
+    // deal with totals
+    if (selectedUnits)
+    { // fill in and make visible
+      document.getElementById('totalBalance').firstChild.data =  selectedUnits.name + ' ' + formatNumber(totalBalance, precision, '', false);
+      document.getElementById('totalOutCredit').firstChild.data = formatNumber(totalOutCredit, precision, '', false);
+      document.getElementById('totalInCredit').firstChild.data = formatNumber(totalInCredit, precision, '', false);
+      document.getElementById('totalRow').style.display = 'table-row';
+    } else { // make invisible
+      document.getElementById('totalRow').style.display = 'none';
+    }
+  }
+}
+
+window.onload=function()
+{
+  setDisplayUnits(document.getElementById('unitSelect'));
+  //setPrecision(document.getElementById('precisionSelect'));
+}
+
+--></script>
+{% endif %}
+{% endblock %}

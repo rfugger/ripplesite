@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{SERVICE_NAME|escape}} - Confirm Account Close{% endblock %}
+{% block content %}
+
+<h3>Confirm Account Close</h3>
+{% include "info.html" %}
+<form action="/accounts/{{acct.id}}/close/" method="post">
+  <p>You may include a note to your account partner indicating why
+  you are closing the account:</p>
+  <textarea name="note" rows="4" cols="40" wrap="soft"></textarea><br/>
+  <input class="button" name="submit" type="submit" value="Close account"/>
+  <input class="button" name="submit" type="submit" value="Cancel"/>
+</form>
+
+<p><a href="/accounts/{{acct.id}}/close/">Close account without leaving a note</a></p>
+<p><a href="/accounts/{{acct.id}}/">Cancel and return to account</a></p>
+
+{% endblock %}

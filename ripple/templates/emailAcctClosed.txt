@@ -1,0 +1,19 @@
+This is a notice that one of your shared Ripple accounts at {{SERVICE_NAME}} has been closed by your account partner.
+
+Account information:
+
+Account ID: {{acct.shared_data.id}}
+Account name: {{acct.name}}
+Partner's email: {{acct.partner.getPrimaryEmail}}
+Units of account: {{acct.shared_data.currency.long_name}}
+Final balance: 0.00
+
+{% if note %}Your partner has included the following note:
+
+----------
+{{note}}
+----------
+
+{% endif %}If you have any questions, please contact your account partner at {{acct.partner.getPrimaryEmail}}.
+
+{% include "sig.txt" %}

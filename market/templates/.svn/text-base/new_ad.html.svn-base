@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{SERVICE_NAME|escape}} - Marketplace{% endblock %}
+{% block content %}
+<h3>Post A New Ad</h3>
+
+{% include "info.html" %}
+
+<form action="." method="post">
+<p>Subject:  
+  <input type="text" name="title" value="{{ values.title|escape }}" maxlength="255" 
+    style="width:400px;"/>
+</p>
+<p><textarea name="text" style="width:500px; height:300px;">{{ values.text|escape }}</textarea></p>
+<p><input class="button" type="submit" value="Post" /></p>
+</form>
+
+<p><a href="../">Cancel and return to marketplace main page</a></p>
+
+{% endblock %}

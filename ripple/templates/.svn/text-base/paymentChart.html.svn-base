@@ -1,0 +1,28 @@
+{% load extratags %}
+
+<table class="chart">
+  <tr><th>ID</td><th>Date</th><th>Description</th>{% if userNode.display_units_id %}<th>Value as stored<br/>in accounts</th>{% endif %}</tr>
+  {% for pmt in payments %}
+    {% if pmt.amount %}
+    <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
+      <td class="num"><a href="/payments/{{pmt.id}}/">{{pmt.id}}</a></td>
+      <td>{{pmt.date|date:"d M Y"}}</td>
+    <td><a href="/payments/{{pmt.id}}/">
+      {% ifequal pmt.sign '-' %}Paid {{pmt.currency.short_name|escape}} {{pmt.amount|myStrFormat:".2f"}}
+      to {{pmt.recipient_email|escape}}
+      {% else %}Received {{pmt.currency.short_name|escape}} {{pmt.amount|myStrFormat:".2f"}}
+      from {{pmt.payer_email|escape}}
+      {% endifequal %}
+      {% ifnotequal pmt.description "" %}
+      <br/></a>
+      "{{pmt.description|slice:":40"|escape}}..."
+      <a href="/payments/{{pmt.id}}/"><i>more</i></a></td>
+      {% endifnotequal %}
+    {% if userNode.display_units_id %}<td class="num">
+      {% if pmt.currentValue %}{{userNode.display_units.short_name|escape}} {{pmt.sign}}{{pmt.currentValue|myStrFormat:".2f"}}
+      {% else %}--{% endif %}</td>
+    {% endif %}
+    </tr>
+    {% endif %}
+  {% endfor %}
+</table>

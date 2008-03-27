@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>{% block title %}{{SERVICE_NAME|escape}}{% endblock %}</title>
+  <link rel="stylesheet" href="/media/ripple.css" type="text/css" />
+  {% block script %}{% endblock %}
+</head>
+
+<body>
+<div id="wrap">
+<div id="title">
+  <a href="/"><img src="/media/logo3.{% if iexplorer %}gif{% else %}png{% endif %}" /></a>
+</div>
+
+<div id="titlemenu">
+  <a href="/" class="leftitem">Home</a>|<a href="/about/">About</a>|<a href="/faq/">FAQ</a>|<a href="/donate/">Donate</a>|<a href="/contact/">Contact</a>
+</div>
+
+<div id="nodemenu">
+  {% if userNode %}
+  Logged in as: {{ userNode.username|escape}}
+  |<a href="/summary/" class="leftitem">Summary</a>|<a href="/accounts/">Connections</a>|<a href="/payments/">Payments</a>|<a href="/market/">Marketplace</a>|<a href="/profile/">Profile</a>|<a href="/logout/">Log out</a>
+  {% else %}
+  <a href="/login/" class="leftitem">Log in</a>|<a href="/register/">Sign up</a>
+  {% endif %}
+</div>
+
+<div id="content">
+{% block content %}
+{% endblock %}
+</div>
+
+<hr id="pad"/>
+
+<div id="bottommenu">
+  <a href="/" class="leftitem">Home</a>|<a href="/about/">About</a>|<a href="/faq/">FAQ</a>|<a href="/donate/">Donate</a>|<a href="/contact/">Contact</a>
+</div>
+
+</div>
+</body>
+</html>

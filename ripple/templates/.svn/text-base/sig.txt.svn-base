@@ -1,0 +1,4 @@
+--
+{{SERVICE_NAME}}: Be your own banker.
+Email: {{ADMIN_EMAIL}}
+Web: http://{{SITE_NAME}}/

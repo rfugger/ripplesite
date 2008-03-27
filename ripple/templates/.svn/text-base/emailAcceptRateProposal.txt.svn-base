@@ -1,0 +1,7 @@
+{{acct.partner.name}} has accepted your proposal to charge {{acct.shared_data.displayRate}}% on outstanding balances on your shared account #{{acct.shared_data_id}} ({{acct.name}}).
+
+You can view your account details here:
+
+http://{{SITE_NAME}}/accounts/{{acct.id}}/
+
+{% include "sig.txt" %}

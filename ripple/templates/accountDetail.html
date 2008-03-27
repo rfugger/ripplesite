@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load extratags %}
+{% block title %}{{SERVICE_NAME|escape}} - Connection Detail{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/media/common.js"></script>
+{% endblock %}
+{% block content %}
+<h3>Connection Detail</h3>
+
+{% include "info.html" %}
+
+<p>This page allows you to see the details of one of your connection accounts, as well
+as change the name of the account and set credit limits for you and your connection partner.</p>
+
+{% ifequal userNode.id acct.shared_data.node_to_confirm_id %}
+<p><i>Your partner has proposed an interest rate of <b>{{acct.shared_data.displayProposedRate}}%</b> &ndash;
+<a href="./rate/accept/">accept</a> | <a href="./rate/reject/">reject</a></p>
+{% endifequal %}
+
+<table class="chart">
+  <tr class="even"><td>Account ID</td><td>{{acct.shared_data.id}}</td></tr>
+  <tr><td>Account name</td><td>{{acct.name|escape}}</td></tr>
+  <tr class="even"><td>Partner's email</td><td>{{acct.partner.getPrimaryEmail|escape}}</td></tr>
+  <tr><td>Interest Rate</td><td>{{acct.shared_data.displayRate}}%
+      {% if acct.shared_data.node_to_confirm_id %}({{acct.shared_data.displayProposedRate}}% proposed){% endif %}
+  </td></tr>
+  <tr class="even"><td>Units of account</td><td>{{cur.long_name|escape}}</td>
+    {% if convertibleUnits %}<td><form>Converted to<br/><select id="unitSelect" onchange="setDisplayUnits(this)">
+      {% for unit in convertibleUnits %}
+        <option value="{{forloop.counter0}}" {% ifequal unit.id userNode.display_units_id %}selected{% else %}{% ifequal unit.id cur.id %}selected{% endifequal %}{% endifequal %}>
+          {{unit.long_name|escape}}</option>
+      {% endfor %}</select></form></td>
+    {% endif %}</tr>
+  <tr><td>Balance</td><td class="num">{{balance|myStrFormat:".2f"}}</td>{% if convertibleUnits %}<td id="displayBalance" class="num">{{displayBalance|myStrFormat:".2f"}}</td>{% endif %}</tr>
+  <!-- <tr><td>30-day averaged balance <br/><a href="/faq/#average">(What is this?)</a></td><td class="num">{{avgBalance|myStrFormat:".2f"}}</td>{% if convertibleUnits %}<td id="displayAvgBalance" class="num">{{displayAvgBalance|myStrFormat:".2f"}}</td>{% endif %}</tr> -->
+  <tr class="even"><td>My credit limit</td><td class="num">{{lowerLimit|myStrFormat:".2f"}}</td>{% if convertibleUnits %}<td id="displayLowerLimit" class="num">{{displayLowerLimit|myStrFormat:".2f"}}</td>{% endif %}</tr>
+  <tr><td>My partner's credit limit</td><td class="num">{{upperLimit|myStrFormat:".2f"}}</td>{% if convertibleUnits %}<td id="displayUpperLimit" class="num">{{displayUpperLimit|myStrFormat:".2f"}}</td>{% endif %}</tr>
+</table>
+<noscript><p><i>The conversion menu requires javascript to function.</i></p></noscript>
+
+{% if acct.shared_data.active %}
+
+<p><a href="/payUser/{{acct.partner_id}}/">Pay this user</a> |
+  <a href="/requestPayment/{{ acct.partner_id }}/">Request payment from this user</a></p>
+{% if closeable %}
+  <p><a href="/confirmClose/{{acct.id}}/">Close this account</a></p>
+{% else %}
+  <p>An account may only be closed when its balance is zero.
+  <a href="/faq/#close">More information...</a></p>
+{% endif %}
+
+<h4>Change connection details</h4>
+
+<form action="/accounts/{{acct.id}}/" name="modify" method="post">
+  <table>
+    <tr><td>Account name</td><td><input type="text" name="name" value="{{acct.name|escape}}"/></td></tr>
+    <tr><td>Interest rate</td><td><input type="text" name="interest" 
+        value="{{acct.shared_data.displayRate}}" size="2"/>%</td></tr>
+    <tr><td>Partner's maximum credit limit (in {{cur.long_name|escape}}s)</td><td><input type="text" name="partner_limit" value="{{acct.partner_limit|myStrFormat:".2f"}}" size="10"/></td></tr>
+    <tr><td>My maximum credit limit (in {{cur.long_name|escape}}s)</td><td><input type="text" name="my_limit" value="{{acct.my_limit|myStrFormat:".2f"}}" size="10"/> (Leave blank for unlimited)</td></tr>
+    <tr><td></td><td><input class="button" type="submit" value="Save Changes"/></td></tr>
+  </table>
+</form>
+
+{% else %}
+
+<p><i>Account has been closed.</i></p>
+
+{% endif %}
+
+{% if months %}
+<h4>Account entries</h4>
+{% include "paymentLinkChart.html" %}
+{% endif %}
+
+<p><a href="/accounts/">Back to Connections</a></p>
+
+{% if convertibleUnits %}
+<script type="text/javascript"><!--
+function unit(name, symbol, value)
+{
+  this.name = name;
+  this.symbol = symbol;
+  this.value = value;
+}
+
+{% for unit in convertibleUnits %}
+  convertibleUnits[{{forloop.counter0}}] = new unit('{{unit.short_name}}', '{{unit.symbol}}', {{unit.value}});
+{% endfor %}
+
+var displayBalance = {{displayBalance}};
+//var displayAvgBalance = {{displayAvgBalance}};
+var displayLowerLimit = {{displayLowerLimit}};
+var displayUpperLimit = {{displayUpperLimit}};
+var defaultUnits, i;
+for(i = 0; i < convertibleUnits.length; i++)
+  if (convertibleUnits[i].name == '{% if userNode.display_units_id %}{{userNode.display_units.short_name}}{% else %}{{cur.short_name}}{% endif %}')
+  {
+    defaultUnits = convertibleUnits[i];
+    break;
+  }
+
+function recalculate()
+{
+  if (document.getElementById)
+  {
+    // calculate variables to display
+    var rate = defaultUnits.value / selectedUnits.value;
+    var newBalance = displayBalance * rate;
+    //var newAvgBalance = displayAvgBalance * rate;
+    var newLowerLimit = displayLowerLimit * rate;
+    var newUpperLimit = displayUpperLimit * rate;
+
+    // change document to display variables
+    document.getElementById('displayBalance').firstChild.data = formatNumber(newBalance, precision, '', false);
+    //document.getElementById('displayAvgBalance').firstChild.data = formatNumber(newAvgBalance, precision, '', false);
+    document.getElementById('displayLowerLimit').firstChild.data = formatNumber(newLowerLimit, precision, '', false);
+    document.getElementById('displayUpperLimit').firstChild.data = formatNumber(newUpperLimit, precision, '', false);
+  }
+}
+
+window.onload=function()
+{
+  setDisplayUnits(document.getElementById('unitSelect'));
+  //setPrecision(document.getElementById('precisionSelect'));
+}
+
+--></script>
+{% endif %}
+{% endblock %}

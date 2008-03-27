@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/!svn/ver/242/ripplesite/ripple/views
+END
+payment.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/242/ripplesite/ripple/views/payment.py
+END
+testutil.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/242/ripplesite/ripple/views/testutil.py
+END
+pathgraph.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/230/ripplesite/ripple/views/pathgraph.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/234/ripplesite/ripple/views/__init__.py
+END
+connection.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/230/ripplesite/ripple/views/connection.py
+END
+dbconnect.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/234/ripplesite/ripple/views/dbconnect.py
+END
+netgen.py
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/230/ripplesite/ripple/views/netgen.py
+END
+routing.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/234/ripplesite/ripple/views/routing.py
+END

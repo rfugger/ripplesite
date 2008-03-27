@@ -1,0 +1,250 @@
+html {
+  height: 100%;
+}
+
+body
+{
+  margin: 0;
+  padding: 0;
+  min-width: 750px;
+  height: 100%;
+  background-color: #faf9f0;
+  xbackground-color: #e0debf;
+  color: black;
+  font-family: verdana, arial, sans-serif;
+  font-size: 75%;
+}
+
+#wrap
+{
+  margin: 0 auto;
+  width: 750px;
+  min-height: 100%;
+  position: relative;
+  border-left: 1px solid #006666;
+  border-right: 1px solid #006666;
+  background-color: white;
+}
+
+* html #wrap
+{
+  height: 100%;
+}
+
+#title
+{
+  background-image: url(green-yellow-back.png);
+  padding: 0px;
+  vertical-align: bottom;
+}
+
+#titlemenu
+{
+  background-image: url(red-white-back.png);
+  xbackground-color: #7a0600;
+  border-bottom: 1px solid #006666;
+  border-top: 1px solid #006666;
+  padding: 5px 0;
+  color: #f4f2d0;
+  text-align: right;
+}
+
+#nodemenu
+{
+  background-image: url(green-yellow-back.png);
+  xbackground-color: #006666;
+  padding: 5px 0;
+  text-align: left;
+  text-align: center;
+  color: #f4f2d0;
+}
+
+/*----------------------------*/
+
+#content
+{
+  background-color: white;
+  padding: 10px;
+  border-top: 1px solid #006666;
+}
+
+a img
+{
+  border: 0;
+}
+
+h2
+{
+  margin: 10px 0px 20px 30px;
+}
+
+h3
+{
+  border-bottom: 1px solid #006666;
+  width: 50%;
+}
+
+h4
+{
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+p
+{
+  width: 70%;
+}
+
+#messagebox
+{
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 67%;
+  margin-left: 15%;
+  border: 1px solid #006666;
+}
+
+#messagebox ul
+{
+  margin: 0;
+  font-style: italic;
+}
+
+.offers
+{
+  border: 1px solid black;
+  padding: 0 10px;
+}
+
+.layout
+{
+  border-collapse: collapse;
+}
+
+.layout td
+{
+  margin: 0;
+  padding: 2px 10px;
+}
+
+.chart
+{
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.chart td, .chart th
+{
+  margin: 0;
+  padding: 2px 10px;
+  border: 1px solid black;
+}
+
+.chart th
+{
+  background-color: #006666;
+  color: white;
+}
+
+.num
+{
+  text-align: right;
+}
+
+.spantitle td
+{
+  padding-top: 15px;
+  vertical-align: bottom;
+  font-weight: bold;
+}
+
+.spantitle, .offers, #messagebox
+{
+  background-color: #f4f2d0;
+}
+
+input, textarea, .even td, .ad-text
+{
+  background-color: #faf9f0;
+}
+
+hr
+{
+  color: #006666;
+  width: 20%;
+}
+
+/*----------------------------*/
+
+#pad
+{
+  height: 2em;
+  visibility: hidden;
+}
+
+#bottommenu
+{
+  background-image: url(green-yellow-back.png);
+  xbackground-color: #006666;
+  text-align: center;
+  padding: 5px 0;
+  color: #f4f2d0;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  border-top: 1px solid #006666;
+}
+
+a:link, a:visited, a.active
+{
+  color: #006666;
+  text-decoration: none;
+}
+
+a:hover
+{
+  text-decoration: underline;
+}
+
+#titlemenu a
+{
+  color: #f4f2d0;
+  padding: 5px;
+}
+
+#nodemenu a, #bottommenu a
+{
+  color: #f0e2a0;
+  xcolor: #f4f2d0;
+  padding: 5px;
+}
+
+#title a:hover
+{
+  text-decoration: none;
+}
+
+#titlemenu a:hover
+{
+  background-color: #7a0600;
+  text-decoration: none;
+}
+
+#nodemenu a:hover, #bottommenu a:hover
+{
+  background-color: #006666;
+  text-decoration: none;
+}
+
+.button
+{
+  background-color:#006666;
+  color:white;
+}
+
+.ad-text
+{
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #006666;
+}

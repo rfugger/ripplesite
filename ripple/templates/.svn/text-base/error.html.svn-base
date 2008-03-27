@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{SERVICE_NAME|escape}} - Error{% endblock %}
+{% block content %}
+<h3>Error</h3>
+<p><i>{{message|escape}}<i></p>
+{% if link %}
+<p><a href="{{link|escape}}">Continue</a></p>
+{% endif %}
+{% endblock %}

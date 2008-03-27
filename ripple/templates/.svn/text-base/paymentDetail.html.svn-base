@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load extratags %}
+{% block title %}{{SERVICE_NAME|escape}} - Payment Detail{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/media/common.js"></script>
+{% endblock %}
+{% block content %}
+{% if inPayment %}
+<h3>Payment from {{pmt.payer_email|escape}}</h3>
+{% else %}{% if outPayment %}
+<h3>Payment to {{pmt.recipient_email|escape}}</h3>
+{% else %}
+<h3>Through Payment</h3>
+{% endif %}{% endif %}
+
+{% include "info.html" %}
+
+<table class="layout">
+  <tr><td>Payment ID</td><td>{{pmt.id}}</td></tr>
+  <tr><td>Date</td><td>{{pmt.date|date:"d M Y"}}</td></tr>
+  {% ifnotequal inPayment outPayment %}
+  {% if inPayment %}
+  <tr><td>Received from</td><td>{{pmt.payer_email|escape}}</td></tr>
+  {% else %}
+  <tr><td>Paid to</td><td>{{pmt.recipient_email|escape}}</td></tr>
+  {% endif %}
+  <tr><td>Amount</td><td>{{pmt.amount|myStrFormat:".2f"}}</td></tr>
+  <tr><td>Payment units</td><td>{{pmt.currency.long_name|escape}}</td></tr>
+  <tr><td>Description</td>
+    <td>{{pmt.description|escape|linebreaksbr}}</td>
+  {% endifnotequal %}
+</table>
+
+{% if inPayment %}
+<p><a href="/payUser/{{pmt.payer_id}}/">Make a payment back to this user</a></p>
+{% endif %}
+{% if outPayment %}
+<p><a href="/payUser/{{pmt.recipient_id}}/">Make another payment to this user</a></p>
+{% endif %}
+<br/>
+
+<table class="chart">
+  {% if inAccts %}
+  <tr class="spantitle"><td colspan="{% if convertibleUnits %}4{% else %}3{% endif %}">
+    Account{{ inAccts|pluralize:"s" }} receiving payment</td></tr>
+  <tr><th>ID</th><th>Account name</th><th>Entry</th>
+    {% if convertibleUnits %}<th>Converted to</th>{% endif %}</tr>
+  {% for acct in inAccts %}
+  <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
+    <td><a href="/accounts/{{acct.id}}/">{{acct.shared_data_id}}</a></td>
+    <td><a href="/accounts/{{acct.id}}/">{{acct.name|escape}}</a></td>
+    <td class="num">{{acct.shared_data.currency.short_name|escape}} {{acct.inEntry|myStrFormat:".2f"}}</td>
+    {% if convertibleUnits %}<td id="{{acct.id}}_inEntry" class="num">{{acct.displayInEntry|myStrFormat:".2f"}}</td>{% endif %}
+  </tr>
+  {% endfor %}
+  {% if convertibleUnits %}
+  <tr><th colspan="2">Total</th>
+    <th id="outTotal" class="num">{{displayInTotal|myStrFormat:".2f"}}</th>
+  </tr>
+  {% endif %}
+  {% endif %}
+
+  {% if outAccts %}
+  <tr class="spantitle"><td colspan="{% if convertibleUnits %}4{% else %}3{% endif %}">
+    Account{{ outAccts|pluralize:"s" }} sending payment</td></tr>
+  <tr><th>ID</th><th>Account name</th><th>Entry</th>
+    {% if convertibleUnits %}<th>Converted to</th>{% endif %}</tr>
+  {% for acct in outAccts %}
+  <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
+    <td><a href="/accounts/{{acct.id}}/">{{acct.shared_data_id}}</a></td>
+    <td><a href="/accounts/{{acct.id}}/">{{acct.name|escape}}</a></td>
+    <td class="num">{{acct.shared_data.currency.short_name|escape}} -{{acct.outEntry|myStrFormat:".2f"}}</td>
+    {% if convertibleUnits %}<td id="{{acct.id}}_outEntry" class="num">-{{acct.displayOutEntry|myStrFormat:".2f"}}</td>{% endif %}
+  </tr>
+  {% endfor %}
+  {% if convertibleUnits %}
+  <tr><th colspan="2">Total</th>
+    <th id="outTotal" class="num">{{displayOutTotal|myStrFormat:".2f"}}</th>
+  </tr>
+  {% endif %}
+  {% endif %}
+</table>
+<br/>
+
+<a href="/payments/">Return to Payments</a>
+
+{% endblock %}

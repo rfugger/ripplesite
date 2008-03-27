@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{SERVICE_NAME|escape}} - About Ripple{% endblock %}
+{% block content %}
+<h3>About Ripple</h3>
+
+<p>Ripple is a monetary system that makes simple obligations between friends as useful
+for making payments as regular money.</p>
+
+<p>Normally, if your friend Alice owed you $10, she would have to pay you back before you
+could make any use of that debt.  If you were creative, however, you might be able to pass the
+debt on to someone else who knew and trusted Alice, in exchange for something you
+wanted.  For example, you might be able to get a book you want from Bob, who also knows Alice, 
+in exchange for letting Alice know that she now owes Bob $10.  Instead of money, <i>you used
+Alice's IOU to pay Bob.</i>  Alice acts as an intermediary between you and Bob.</p>
+
+<p>Ripple does the same thing, only it takes the idea one step further.
+What happens if you want to get a haircut from Carol, who doesn't know Alice at all?
+Your $10 IOU from Alice isn't useful because Carol being owed money by Alice doesn't
+mean anything to Carol.  But suppose you had a way to find out that Bob, who knows
+Alice, also knows Carol.  You could talk to Bob and arrange for him to take Alice's
+IOU in exchange for <i>giving his own IOU for $10 to Carol.</i>  Since Alice owes him
+exactly what he owes Carol, Bob is even on the deal.  Both Alice and Bob act as
+intermediaries between you and Carol.</p>
+
+<p>And that's how Ripple works.  You create a profile on the system and indicate who
+you know and how much you trust them by connecting to people by email address 
+and giving them credit limits.  Then whenever you want to make a payment to another
+Ripple user using only friendly obligations, the system finds a chain of intermediaries
+connecting you to the person you want to pay, and records the payment in each 
+intermediary's account all the way down the chain.  You end up owing one of your
+"neighbours" on the system, and the payment recipient ends up being owed by one of
+her neighbours.</p>
+
+<p>For more information, see the <a href="/faq/">Frequently Asked Questions</a>, or
+<a href="/contact/">contact us with your questions</a>.</p>
+
+<p>{{SERVICE_NAME|escape}} is a part of the <a href="http://ripple.sourceforge.net/" target="_blank">Ripple
+project</a> to develop a peer-to-peer network protocol for making decentralized 
+Ripple payments between users on different computers.  To learn more, please
+visit <a href="http://ripple.sourceforge.net/" target="_blank">the Ripple project homepage</a>.
+
+{% endblock %}

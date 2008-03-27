@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% block title %}{{SERVICE_NAME|escape}} - Frequently Asked Questions{% endblock %}
+{% block content %}
+<h3>Frequently Asked Questions</h3>
+
+<p><b>Ripple Concept</b></p>
+<ul>
+  <li><a href="#collect">How do I collect my money?</a></li>
+  <li><a href="#why_ripple">Why would I want to use Ripple when I can use regular money?</a></li>
+  <li><a href="#barter">Is Ripple a barter system?</a></li>
+  <li><a href="#lets">Is Ripple a LETS system?</a></li>
+</ul>
+
+<p><b>Using This Site</b></p>
+<ul>
+  <li><a href="#pre-existing">How do I enter pre-existing debt into the system?</a></li>
+  <li><a href="#cancel">How do I cancel debt on the system once it's been settled?</a></li>
+  <li><a href="#close">How do I close down a connection account?</a></li>
+  <li><a href="#outside">Why is my account balance outside the credit limits I have set?</a></li>
+  <li><a href="#add_up">Why do my account balances not add up?</a></li>
+  <li><a href="#overall_change">Why does my overall balance keep changing?</a></li>
+  <li><a href="#units_change">Why does the total balance for each of my different currencies change?</a></li>
+</ul>
+
+<p>If you have any other questions, <a href="/contact/">please contact us.</a></p>
+
+<h4>Ripple Concept</h4>
+
+<a name="collect"></a>
+<p><img src="/media/bullet.png"/> <i>How do I collect my money?</i></p>
+<p>When you get paid through Ripple, you are left being owed by one or more of your
+neighbours.  You may use those obligations to purchase whatever you can by
+paying them to someone through the system.  Of course, you may pay them right
+to one of your neighbours for whatever they have to offer you, including cash.
+
+<p>Until there is a critical mass of users, buying exactly what you want using
+Ripple may be difficult, therefore if settling in cash is important to you, you 
+should make this clear to your neighbours so they will not be surprised when you
+ask them for money.  Also, take care to not offer credit limits that are too high,
+or collecting may become a problem.  Remember, someone may become indebted to you
+not just for what you or they have done on the system, but also for what others have
+done through the connection between you!</p>
+<br/>
+
+<a name="why_ripple"></a>
+<p><img src="/media/bullet.png"/> <i>Why would I want to use Ripple when I can use regular money?</i></p>
+<p>In short, because it is cheaper to use and because your friends are a more wholesome
+source of credit than banks.  Not only will your friends be more understanding if
+you need to miss a few payments for a good reason, but they will also be more
+likely to help you out if your spending habits are getting unhealthy.</p>
+<p>For a more detailed perspective, <a href="/essay/">see the essay.</a></p>
+<br/>
+
+<a name="barter"></a>
+<p><img src="/media/bullet.png"/> <i>Is Ripple a barter system?</i></p>
+<p>No.  Ripple is a monetary system, with all the benefits of money over barter,
+such as not having to find someone who wants exactly what you're offering before
+you can get something you want.  In a sense, all monetary systems are about 
+providing a way to flexibly store value to enable more efficient exchanges, which 
+could be called "delayed-gratification barter".  But no, Ripple has nothing to
+do with barter.</p>
+<br/>
+
+<a name="lets"></a>
+<p><img src="/media/bullet.png"/> <i>Is Ripple a LETS system?</i></p>
+<p>Ripple was inspired by <a href="http://www.gmlets.u-net.com/">the LETS concept
+and the writings of Michael Linton</a>, and was conceived originally as a way
+to bring more accountability into the spending of credits in a LETS system.
+Unlike LETS, which only tracks obligations to and from a single central intermediary,
+Ripple tracks obligations between individuals in a social network.  In practice,
+many LETS users and administrators have complained that LETS provides little incentive
+to make good on one's obligations other than the desire to have the system work.
+In Ripple, obligations are never to "the system", or to some other collective entity,
+but in specific amounts to specific individuals who have agreed to trust you, and
+the loss of whose trust would have a tangible effect on a participant's life should
+they decide to renege on their obligations.</p>
+
+<p>Put another way, Ripple is like an interconnected network of LETS systems, each
+operated by an individual participant.  The subscribers to each individual's LETS
+are his or her neighbours.  Each participant acts as a broker to exchange between
+the LETS currencies they subscribe to.</p>
+<br/>
+
+<h4>Using {{SERVICE_NAME|escape}}</h4>
+
+<a name="pre-existing"></a>
+<p><img src="/media/bullet.png"/> <i>How do I enter pre-existing debt into the system?</i></p>
+<p>First, make a connection to the person you owe or who owes you the pre-existing
+debt, and make sure that the person owing the debt is granted a high enough credit
+limit to accomodate the amount of the debt.  Then, since payments in Ripple are 
+actually IOUs, the person owing the debt would make a regular Ripple payment in the
+amount owing to the person he or she owes.  That will change the balance on their
+shared connection account to reflect the pre-existing debt.</p>
+<br/>
+
+<a name="cancel"></a>
+<p><img src="/media/bullet.png"/> <i>How do I cancel debt on the system once it's been settled?</i></p>
+<p>When two connected account partners settle a Ripple obligation outside the system, for example, by using
+cash, the person receiving the settlement must record it in the system by returning
+the settled IOUs to their issuer.  They do this by making a regular Ripple payment to
+the person who settled their debt with you.  Your mutual account balance will be
+changed to reflect the fact that the debt has been settled.  In effect, <a href="#collect">they are
+using the IOUs they hold on the Ripple system to purchase cash.</a></p>
+<br/>
+
+<a name="close"></a>
+<p><img src="/media/bullet.png"/> <i>How do I close down a connection account?</i></p>
+<p>When you no longer wish to have a shared credit account with someone on the 
+Ripple system, you may close the account, but only if the balance is zero.
+First, set both credit limits to zero.  Then arrange for the partner holding
+the balance, if any, to make a payment on the system to make the balance zero,
+and settle the debt outside the system.</p>  
+
+<p>Alternatively, if you both have other active accounts, you may just wait for
+through payments to settle the balance for you.  The zeroed credit limits will
+prevent the balance from ever doing anything but shrink.</p>
+<br/>
+
+<a name="outside"></a>
+<p><img src="/media/bullet.png"/> <i>Why is my account balance outside the credit limits I have set?</i></p>
+<p>You have most likely reduced a credit limit below the current balance so as
+to have placed the already-existing balance out-of-bounds.  Don't fear, the balance will not be
+able to move any further out-of-bounds, and payments moving through you will likely
+eventually move the balance into the new limits you have created.  You may wish
+to <a href="#collect">settle some of the debt on the account with your partner to move the balance
+back in-bounds.</a></p>
+<br/>
+
+<a name="add_up"></a>
+<p><img src="/media/bullet.png"/> <i>Why do my account balances not add up?</i></p>
+<p>So that no fractional cents are lost on exchanges between different units,
+the system keeps accounts to 12 decimal places.  Since only two decimal digits
+are displayed, rounding sometimes means that the totals appear to be off by
+0.01.  The totals are in fact correct to two decimal places.  A future feature 
+may enable accounts to be viewed to more decimal digits of precision to 
+confirm this.</p>
+<br/>
+
+<a name="overall_change"></a>
+<p><img src="/media/bullet.png"/> <i>Why does my account balance keep changing?</i></p>
+<p>If you have accounts in several different currency units, and view your 
+overall balance in any one currency (usually your default display units), 
+your overall balance will fluctuate slowly over time as the exchange rates 
+between currency units change.</p>
+<br/>
+
+<a name="units_change"></a>
+<p><img src="/media/bullet.png"/> <i>Why does the total balance for each of my different currencies change?</i></p>
+<p>When you are selected to be an intermediary for a payment, you may 
+receive credits on an account in one currency, and pay out credits in another
+currency.  So your total balance for the first currency would increase, and the 
+total balance for the second would decrease by the same amount.  As exchange rates
+change over time, you may find that any single through-payment may cause you a 
+very small gain or loss for this reason.  If this makes you uncomfortable, you may
+disable automatic conversion between currency units in your profile.  This will
+force your total balances for each of your different currencies to remain the same
+unless you make or receive payment in one of them.</p>
+<br/>
+{% endblock %}

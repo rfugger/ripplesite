@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{SERVICE_NAME|escape}} - Leave a Note{% endblock %}
+{% block content %}
+
+<h3>Leave a Note</h3>
+
+<p>You may include a note to {{offer.initiator.getPrimaryEmail|escape}} explaining why you do not wish to accept this offer.</p>
+
+<form action="/offers/{{offer.id}}/reject/" method="post">
+  <textarea name="note" rows="4" cols="40" wrap="soft"></textarea><br/>
+  <input class="button" type="submit" value="Proceed"/>
+</form>
+<br/>
+<a href="/offers/{{offer.id}}/reject/">Proceed without leaving a note</a><br/>
+<br/>
+<a href="/summary/">Cancel</a>
+
+{% endblock %}

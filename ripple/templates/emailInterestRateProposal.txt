@@ -1,0 +1,19 @@
+{{acct.partner.name}} has proposed a {{acct.shared_data.displayProposedRate}}% interest rate on outstanding balances for your shared account #{{acct.shared_data_id}} ({{acct.name}}).  The current interest rate on the account is {{acct.shared_data.displayRate}}%.
+
+You can view details of the account here:
+
+http://{{SITE_NAME}}/accounts/{{acct.id}}/
+
+To accept the new proposed rate, visit this address:
+
+http://{{SITE_NAME}}/accounts/{{acct.id}}/rate/accept/
+
+To reject the proposal, visit this address:
+
+http://{{SITE_NAME}}/accounts/{{acct.id}}/rate/reject/
+
+Both of these links are available on your account details page.  If you do not act, your interest rate will remain unchanged.
+
+Interest in Ripple is calculated per annum, compounded continuously.
+
+{% include "sig.txt" %}

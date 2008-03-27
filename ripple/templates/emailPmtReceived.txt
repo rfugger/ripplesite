@@ -1,0 +1,22 @@
+You have received a Ripple payment at {{SERVICE_NAME}} from {{pmt.payer_email}}. 
+
+Payment details:
+
+Payment ID: {{pmt.id}}
+Date: {{pmt.date|date:"M j, Y"}}
+Received from: {{pmt.payer_email}}
+Amount: {{pmt.amount|stringformat:".2f"}}
+Payment units: {{pmt.currency.long_name}}
+
+{% if pmt.description %}Description:
+
+----------
+{{pmt.description}}
+----------
+
+{% endif %}What does this mean?  It means that your obligations to your neighbours have decreased and/or their obligations to you have increased.
+
+To see more details, go to
+http://{{SITE_NAME}}/payments/{{pmt.id}}/
+
+{% include "sig.txt" %}

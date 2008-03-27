@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{SERVICE_NAME|escape}} - Login{% endblock %}
+{% block content %}
+<h3>Login</h3>
+
+{% include "info.html" %}
+{% include "loginForm.html" %}
+<p><a href="/forgotPassword/">Forget your password?</a></p>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{{SERVICE_NAME|escape}} - Registration{% endblock %}
+{% block content %}
+<h3>Registration</h3>
+
+{% include "info.html" %}
+<p>Please fill in the following form.  Fields with an asterisk are required.</p>
+<form action="/register/" name="register" method="post">
+  <table class="layout">
+    <tr><td><label for="username">* Username</label></td><td><input type="text" id="username" name="username" value="{{username|escape}}"/></td></tr>
+    <tr><td><label for="name">Full name</label></td><td><input type="text" id="name" name="name" value="{{name|escape}}"/></td></tr>
+    <tr><td><label for="email">* Email</label></td><td><input type="text" id="email" name="email" value="{{email|escape}}"/></td></tr>
+    <tr><td><label for="password">* Password</label></td><td><input type="password" id="password" name="password"/></td></tr>
+    <tr><td><label for="confirmPassword">* Confirm password</label></td><td><input type="password" id="confirmPassword" name="confirmPassword"/></td></tr>
+    <tr><td><label for="displayUnits">Default units</label></td>
+    <td><select name="displayUnits">
+      <option value="None">[None]</option>
+      {% for unit in units %}
+      <option value="{{unit.short_name|escape}}"{% ifequal displayUnits unit.short_name %} selected{% endifequal %}>{{unit.long_name|escape}}</option>
+      {% endfor %}
+    </select></td></tr>
+    <tr><td>&nbsp;</td><td><input class="button" type="submit" value="Register"/></td></tr>
+  </table>
+  <p><i>Note: Choosing default units makes using Ripple easier by pre-selecting certain
+  menus for you, but never locks you in to that choice.  You will be able to use any
+  Ripple units regardless of your default units, and you may change
+  your default units later on in your profile page.</i></p>
+</form>
+
+{% endblock %}
+

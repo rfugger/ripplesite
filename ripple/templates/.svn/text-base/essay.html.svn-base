@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}{{SERVICE_NAME|escape}} - Why Ripple?{% endblock %}
+{% block content %}
+
+<h3>Why Ripple?</h3>
+
+<p><i>Why would I want to use Ripple when I can use regular money?</i></p>
+<p>Two reasons:<br/><br/>
+1. Ripple is more efficient, and therefore cheaper for payments than regular money.<br/>
+2. Ripple is more community-oriented than regular money.<br/><br/>
+The explanation will involve delving into what regular money is and how banks 
+actually work.</p>
+
+<p>To understand why Ripple is more efficient than regular money, take into account that
+when we say "regular money", we're not talking about paper money, but rather bank
+account money, which accounts for over 95% of money out there.  Banks charge fees to
+lend and take care of this money.  Think of all the people who work directly and indirectly
+for the banking industry.  Someone has to pay all these people's salaries, not to mention
+the profits that banks regularly rake in.
+Whether you are charged directly or not, you pay for bank fees 
+because they are factored into the price of every item you purchase.
+How come Ripple doesn't need to charge fees?  Read on:</p>
+
+<p>When you have money in your bank account, you probably realize that the bank doesn't
+actual have a little bundle of paper money in their vault with your name on it.
+Instead, what they have is a little number in their computer with your name on it 
+that tells them how much they owe you.  You trust that if you should ask for a 
+cash withdrawal, the bank will be able to come up with the money.  <i>A bank account
+is really the bank's IOU, or obligation to you.</i>  And if you think about it, 
+paper money is just the government's obligation to you, redeemable as
+payment for taxes.</p>
+
+<p>Since we trust that our banks will be able to issue us useful government obligations
+at any time, we are generally content pay one another by having them shuffle
+their obligations from one person's account to another, using cheques, or
+more recently, debit and credit cards.  Often obligations must be shuffled behind the 
+scenes to a different bank through a central bank, or through several banks in the
+case of international transfers.  This shuffling is exactly what Ripple mimics,
+except instead of shuffling obligations only between banks, it shuffles them
+between anyone, including banks, if they wish to participate.</p>
+
+<p>Banks take the money they get in deposits and lend it out.  Actually, since most
+payments are made without ever withdrawing actual cash, and since most cash simply
+gets deposited right back in a bank anyways, they may lend out up to 
+10 times the amount of deposits they have.  This is how most money gets created:
+banks simply bring it into being by adding to someone's account balance and calling
+it a loan &ndash; money is nothing but bank obligations, after all.</p>
+
+<p>Banks owe many times what they have in cash, and yet stay solvent because every
+borrower promises to pay back the amount they have borrowed.  When a loan is paid
+back, that bank obligation is fulfilled &ndash; in other words, that money is destroyed.
+To earn the money to pay back the loan, a borrower must perform some service of value
+to someone else who has money to spend.  That is what gives money its value: 
+borrowers want to take it in exchange for their services in order to pay back their
+loan.  If a bank can't recover the money from a loan, the bank must deduct the unpaid 
+amount from its profit or risk going bankrupt.  Banking regulations ensure that
+banks follow a strict accounting code.  The whole arrangement
+is a rather ingenius way of keeping score of who is doing their part in society,
+especially given that it was developed well before the advent of computers.</p>
+
+<p>To ensure that it is profitable, then, a bank must only lend to people who
+are going to be able to reliably earn money and who can be trusted to pay back
+what they owe.  So for a bank to lend you money, it must learn how you are going to
+earn money in the future, and how well you have fulfilled your obligations in 
+the past.  Often this is a time-consuming and labour-intensive process, which is 
+one reason that banks employ so many people:  The borrower-lender relationship is 
+fundamentally a trust relationship, and forming a trust relationship takes time 
+and energy.</p>
+
+<p>Ripple is a financial system that recognizes existing trust relationships 
+between human beings and works within that structure, instead imposing
+a structure by demanding that we all put in the effort to form trust relationships 
+with institutions that we would otherwise have nothing to do with.</p>
+
+<p>But more importantly, when a bank lends you money, it is making a value judgement, 
+not only on you and whether your activities will be valuable, but on society at 
+large and whether they will judge your activities as valuable.  A bank is
+an institutional entity, and as such it can only value what it can measure: things
+like income, profit, rates of production, forecast growth, etc.  It cannot value
+things that are truly important to human beings such as love, community, and
+relationship.  Human beings working at banks might do the best they can, but
+ultimately the relationships between bank employees and bank clients are rarely
+very deep because they are formed solely for financial reasons.  And bank employees
+can only exercise discretion within the tightly controlled framework of the bank's
+corporate regulations.</p>
+
+<p>We have a system where nearly all economic activity depends on the presence
+of sufficient money to enable it.  95% of that money is created by banks for
+people or purposes that they deem valuable.  Yet what banks value is at best a 
+shadow of what we truly value as human beings.  Is it any wonder that our 
+economic lives are so out of balance?  That what we feel we must do for money
+so rarely seems to be in harmony with what we truly want to do?  That the more
+successful we become economically, the more the fabric of our communities seems 
+to break down?</p>
+
+<p>In Ripple, the points to keep track of who is contributing to society (which is 
+all money is in the end) are created and accounted for by those who are closest
+to you, who share your values the most, and who are most familiar with your
+personal situation.</p>
+
+<p>Money is a fantastic way that we have invented to organize 
+cooperation among ourselves, and using it, we have been remarkably successful
+at exploiting natural resources to produce an abundance of material goods for
+our enjoyment.  But as important as it is, there is more to life than the enjoyment
+of material goods.  Technology makes it possible to adapt our economic systems
+to better reflect what we actually want out of life.  Ripple is one of the many
+new systems that have become possible because of the internet.</p>
+
+<p>So, by all means, continue using regular money.  But give Ripple and other 
+new systems a try where you can and see if new possibilities don't open up
+for you.</p>
+
+{% endblock %}

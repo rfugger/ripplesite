@@ -1,0 +1,54 @@
+{% load extratags %}
+
+<table class="chart">
+  <tr><th>Date</th><th>Description</th><th>Account Entry</th><th>Balance</th></tr>
+  {% for month in months %}
+    {% if month.interest %}
+      <tr{% if month.highlight_row %} class="even"{% endif %}>
+          <td>{% if month.date %}{{month.date|date:"d M Y"}}{% else %}Present{% endif %}</td>
+          <td>Interest</td>
+          <td class="num">{{month.interest|myStrFormat:".2f"}}</td>
+          <td class="num">{{month.balance|myStrFormat:".2f"}}</td>
+      </tr>
+    {% endif %}
+   
+    {% for link in month.links %}
+      {% if link.amount %}
+      <tr{% if link.highlight_row %} class="even"{% endif %}>
+          <td>{{link.date|date:"d M Y"}}</td>
+          <td><a href="/payments/{{link.path.payment_id}}/">{% ifequal link.payer_account_id acct.id %}Sent{% else %}Received{% endifequal %}
+              payment {{link.path.payment_id}}<br/>
+              {{link.path.payment.description|escape|truncatewords:"6"}}
+          </td>
+          <td class="num">{{link.amount|myStrFormat:".2f"}}</td>
+          <td class="num">{{link.balance|myStrFormat:".2f"}}</td>
+      </tr>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  
+  {% comment %}
+  {% for link in links %}
+    <tr {% if forloop.counter0|divisibleby:"2" %}class="even"{% endif %}>
+      {% if link.getPaymentAmount %}
+      <td class="num"><a href="/payments/{{link.path.payment_id}}/">{{link.path.payment_id}}</a></td>
+      <td>{{link.path.payment.date|date:"d M Y"}}</td>
+      <td class="num">{{link.getPaymentAmount|myStrFormat:".2f"}}</td>
+      {% else %}
+      <td colspan="3"><em>{{link.path.payment.description|escape|linebreaksbr}}</em></td>
+      {% endif %}
+      <td class="num">{{link.interest|myStrFormat:".4f"}}</td>
+      <td class="num">{{link.amount|myStrFormat:".2f"}}</td>
+      <td class="num">{{link.balance|myStrFormat:".2f"}}</td>
+      {% if link.getPaymentAmount %}
+      <td><a href="/payments/{{link.path.payment.id}}/">payment details</a></td>
+      {% endif %}
+    </tr>
+  {% endfor %}
+  {% endcomment %}
+  
+  <tr><td></td>
+      <td><b>Total</b></td>
+      <td class="num"><b>{{paymentTotal|myStrFormat:".2f"}}</b></td>
+  </tr>
+</table>

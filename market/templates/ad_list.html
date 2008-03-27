@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{SERVICE_NAME|escape}} - Marketplace{% endblock %}
+{% block content %}
+<h3>Marketplace</h3>
+
+{% include "info.html" %}
+
+<p><a href="new/">Post a new ad</a></p>
+
+{% if ads %}
+<table class="chart">
+<tr><th>Subject</th><th>Date Posted</th></tr>
+{% for ad in ads %}
+<tr><td><a href="{{ ad.id }}/">{{ ad.title }}</a></td>
+  <td>{{ ad.posted_date|date:"d M Y" }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<p><i>No ads in the system yet.</i></p>
+{% endif %}
+
+{% endblock %}

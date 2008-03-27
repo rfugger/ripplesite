@@ -1,0 +1,19 @@
+This is notification of a request to make a Ripple payment to {{req.recipient_email}} at {{SERVICE_NAME}}.
+
+Request details:
+
+Date: {{req.date|date:"M j, Y"}}
+Request from: {{req.recipient_email}}
+Amount: {{req.amount|stringformat:".2f"}}
+Payment units: {{req.currency.long_name}}
+
+{% if req.description %}Description:
+
+----------
+{{req.description}}
+----------
+
+{% endif %}To see more details, go to
+http://{{SITE_NAME}}/payments/{{req.id}}/
+
+{% include "sig.txt" %}

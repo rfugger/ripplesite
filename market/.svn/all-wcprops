@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/!svn/ver/234/ripplesite/market
+END
+views.py
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/!svn/ver/232/ripplesite/market/views.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/!svn/ver/232/ripplesite/market/__init__.py
+END
+models.py
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/!svn/ver/232/ripplesite/market/models.py
+END
+urls.py
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/!svn/ver/232/ripplesite/market/urls.py
+END

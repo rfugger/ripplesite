@@ -4,7 +4,7 @@ from ripplesite.ripple.models import Node
 
 class Advertisement(models.Model):
     user = models.ForeignKey(Node)
-    title = models.CharField(maxlength=255)
+    title = models.CharField(max_length=255)
     text = models.TextField()
     posted_date = models.DateTimeField(auto_now_add=True)
 

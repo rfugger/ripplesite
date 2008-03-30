@@ -32,10 +32,10 @@ DIGITS = 24 # max. number of digits in amounts
 DECIMALS = 12 # digits reserved for decimals
 
 class CurrencyUnit(models.Model):
-    short_name = models.CharField(maxlength=5, unique=True)
-    long_name = models.CharField(maxlength=50)
-    symbol = models.CharField(maxlength=3)
-    value = models.FloatField(max_digits=DIGITS, decimal_places=DECIMALS, default=0.0) # in base units - for conversion
+    short_name = models.CharField(max_length=5, unique=True)
+    long_name = models.CharField(max_length=50)
+    symbol = models.CharField(max_length=3)
+    value = models.DecimalField(max_digits=DIGITS, decimal_places=DECIMALS, default=0.0) # in base units - for conversion
     last_update = models.DateTimeField(auto_now=True) # last value update
     
     class Admin:
@@ -49,15 +49,15 @@ class CurrencyUnit(models.Model):
 
 
 class Node(models.Model):
-    username = models.CharField(maxlength=20, unique=True)
-    name = models.CharField(maxlength=50)
-    pwd = models.CharField(maxlength=40)
-    salt = models.CharField(maxlength=10, default='') # for salting the password before hashing
+    username = models.CharField(max_length=20, unique=True)
+    name = models.CharField(max_length=50)
+    pwd = models.CharField(max_length=40)
+    salt = models.CharField(max_length=10, default='') # for salting the password before hashing
     display_units = models.ForeignKey(CurrencyUnit, null=True, blank=True, default=None)
     do_conversions = models.BooleanField(default=True) # allow conversion on through payments
     #notify_emails = models.BooleanField()
     #bulletins = models.BooleanField()
-    location = models.FloatField(max_digits=12, decimal_places=11) # routing location
+    location = models.DecimalField(max_digits=12, decimal_places=11) # routing location
 
     class Admin:
         list_display = ('username', 'name', 'display_units', 'do_conversions')
@@ -82,7 +82,7 @@ class Node(models.Model):
 class EmailAddr(models.Model):
     node = models.ForeignKey(Node, db_index=True)
     email = models.EmailField(unique=True)
-    code = models.CharField(maxlength=10, unique=True)
+    code = models.CharField(max_length=10, unique=True)
     confirmed = models.BooleanField(default=False)
     primary = models.BooleanField()
     
@@ -97,7 +97,7 @@ class EmailAddr(models.Model):
 
 class Reminder(models.Model):
     node = models.ForeignKey(Node)
-    code = models.CharField(maxlength=10, unique=True)
+    code = models.CharField(max_length=10, unique=True)
     date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
@@ -110,13 +110,13 @@ class Reminder(models.Model):
 # accounts ----------------------------------
 class SharedAccountData(models.Model):
     currency = models.ForeignKey(CurrencyUnit)
-    balance = models.FloatField(max_digits=DIGITS, decimal_places=DECIMALS)
+    balance = models.DecimalField(max_digits=DIGITS, decimal_places=DECIMALS)
     active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     
     # interest
-    interest_rate = models.FloatField(max_digits=13, decimal_places=10, default=0.0) # stored as decimal (as opposed to percentage for display)
-    proposed_rate = models.FloatField(max_digits=13, decimal_places=10, null=True, blank=True, default=None)
+    interest_rate = models.DecimalField(max_digits=13, decimal_places=10, default=0.0) # stored as decimal (as opposed to percentage for display)
+    proposed_rate = models.DecimalField(max_digits=13, decimal_places=10, null=True, blank=True, default=None)
     node_to_confirm = models.ForeignKey(Node, related_name='shared_accounts_to_confirm', null=True, blank=True, default=None)
     last_update = models.DateTimeField(auto_now_add=True) # to quickly compute present interest tally during payments
     # (interest is added to balance each update, ie, each transaction)
@@ -153,16 +153,16 @@ class Account(models.Model):
     #partner_acct = models.ForeignKey("self", null=True, blank=True)
 
     # what owner calls the account (default would be name/email of partner)
-    name = models.CharField(maxlength=50)
+    name = models.CharField(max_length=50)
 
     # current max negative (debt) balance of this account
-    iou_limit = models.FloatField(max_digits=DIGITS, decimal_places=DECIMALS)
+    iou_limit = models.DecimalField(max_digits=DIGITS, decimal_places=DECIMALS)
 
     # meta-limits - acceptable range for upper and lower account limits according to owner
     # used to allow each partner to regulate their own credit flexibly
     # iou_limit = min(my_limit, partner_acct.partner_limit)
-    partner_limit = models.FloatField(max_digits=DIGITS, decimal_places=DECIMALS) # max amt to accept from partner
-    my_limit = models.FloatField(max_digits=DIGITS, decimal_places=DECIMALS, null=True, blank=True) # max amt of debt to owe to partner - null -> no limit
+    partner_limit = models.DecimalField(max_digits=DIGITS, decimal_places=DECIMALS) # max amt to accept from partner
+    my_limit = models.DecimalField(max_digits=DIGITS, decimal_places=DECIMALS, null=True, blank=True) # max amt of debt to owe to partner - null -> no limit
 
     class Admin:
         list_display = ('id', 'name', 'owner', 'shared_data', 'iou_limit', 'partner_limit', 'my_limit')
@@ -190,11 +190,11 @@ class Account(models.Model):
 
 class Offer(models.Model):
     initiator = models.ForeignKey(Node, related_name='sent_offer_set')
-    recipient_email = models.CharField(maxlength=50)
-    amount = models.FloatField(max_digits=DIGITS, decimal_places=DECIMALS)
+    recipient_email = models.CharField(max_length=50)
+    amount = models.DecimalField(max_digits=DIGITS, decimal_places=DECIMALS)
     currency = models.ForeignKey(CurrencyUnit)
-    initial_balance = models.FloatField(max_digits=DIGITS, decimal_places=DECIMALS, default=0.0)
-    interest_rate = models.FloatField(max_digits=13, decimal_places=8) # stored as percentage, 2 fewer decimals
+    initial_balance = models.DecimalField(max_digits=DIGITS, decimal_places=DECIMALS, default=0.0)
+    interest_rate = models.DecimalField(max_digits=13, decimal_places=8) # stored as percentage, 2 fewer decimals
 
     class Admin:
         list_display = ('initiator', 'recipient_email', 'amount', 'currency', 'initial_balance')
@@ -222,8 +222,8 @@ class Payment(models.Model):
     recipient_email = models.EmailField()
     date = models.DateTimeField(auto_now_add=True)
     currency = models.ForeignKey(CurrencyUnit)
-    amount = models.FloatField(max_digits=DIGITS, decimal_places=DECIMALS)
-    status = models.CharField(maxlength=2, choices=PAYMENT_STATUS_CHOICES)
+    amount = models.DecimalField(max_digits=DIGITS, decimal_places=DECIMALS)
+    status = models.CharField(max_length=2, choices=PAYMENT_STATUS_CHOICES)
     description = models.TextField(default='', blank=True)
 
     def __str__(self):
@@ -245,7 +245,7 @@ class Payment(models.Model):
 # payment may have multiple paths
 class PaymentPath(models.Model):
     payment = models.ForeignKey(Payment)
-    amount = models.FloatField(max_digits=DIGITS, decimal_places=DECIMALS)
+    amount = models.DecimalField(max_digits=DIGITS, decimal_places=DECIMALS)
 
     def __str__(self):
         return "%d: %.2f on payment %s" % (self.id, self.amount, self.payment)
@@ -266,9 +266,9 @@ class PaymentLink(models.Model):
     position = models.PositiveIntegerField() # position in path sequence, starting at 1
 
     # needed because this account may be in a different currency than payment
-    amount = models.FloatField(max_digits=DIGITS, decimal_places=DECIMALS)
-    interest = models.FloatField(max_digits=DIGITS, decimal_places=DECIMALS) # add this to amount to get amount actually subtracted from acct balance during transaction
-    interest_rate = models.FloatField(max_digits=13, decimal_places=10) # for auditability
+    amount = models.DecimalField(max_digits=DIGITS, decimal_places=DECIMALS)
+    interest = models.DecimalField(max_digits=DIGITS, decimal_places=DECIMALS) # add this to amount to get amount actually subtracted from acct balance during transaction
+    interest_rate = models.DecimalField(max_digits=13, decimal_places=10) # for auditability
 
     def __str__(self):
         return "%d. %s on path %s" % (self.position, self.payer_account, self.path)

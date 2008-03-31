@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import stat, sys, os, string, commands, re
 
 def createPgUser():
@@ -10,7 +11,7 @@ def createPgUser():
         c = """ sudo su postgres -c "createuser --no-adduser --no-createrole --createdb `whoami`"   """
         print (commands.getoutput(c))
     else:
-        print "user " + whoiam + "exists\n"
+        print "user " + whoiam + " exists\n"
 
 def createPgDb():
     pgO = commands.getoutput(""" sudo su postgres -c 'psql -c "\li"' """)

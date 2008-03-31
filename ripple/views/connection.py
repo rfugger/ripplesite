@@ -248,8 +248,8 @@ def getLinksandInterestForMonth(acct, year, month):
                                                                           'ripple_payment as pmt'],
                                                           where=['ripple_paymentlink.path_id=path.id',
                                                                         'path.payment_id=pmt.id',
-                                                                        "pmt.date >= '%s'",
-                                                                        "pmt.date < '%s'"],
+                                                                        "pmt.date >= %s",
+                                                                        "pmt.date < %s"],
                                                           params=[month_start, next_month_start]).order_by('-date')
     sum = 0.0
     for link in links:
@@ -521,7 +521,6 @@ def rejectionNote(request, offerId):
     
     d = {'offer': offer}
     return render_to_response('rejectionNote.html', d, context_instance=RequestContext(request))
-    
 
 def offerAction(request, offerId, action):
     """Accept or reject somebodys offer of credit"""
@@ -571,10 +570,12 @@ def offerAction(request, offerId, action):
         # send email informing initiator that offer was accepted
         t = template_loader.get_template('emailInvitationAccepted.txt')
         c = RequestContext(request, {'offer':offer, 'acct':acct1})
-        sendEmail("Invitation accepted", t.render(c), initiator.getPrimaryEmail())
+        initiator_email = initiator.getPrimaryEmail()
+        sendEmail("Invitation accepted", t.render(c), initiator_email)
         
-        request.session['infos'] = ["This is your new connection account with %s.  Please take the time to give your account a meaningful name and assign your new neighbour a credit limit." % escape(initiator.getPrimaryEmail())]
+        request.session['infos'] = ["This is your new connection account with %s.  Please take the time to give your account a meaningful name and assign your new neighbour a credit limit." % escape(initiator_email)]
         return HttpResponseRedirect('/accounts/%d/' % acct2.id)
+
     elif action == 'reject':
         offer.delete()
         

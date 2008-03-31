@@ -39,35 +39,44 @@ RippleSite is an open source version of the server software used to run
 RipplePay.com, a free web service for hosting Ripple payment networks on 
 a single server. (For more information about the Ripple payment concept, 
 see http://ripple.sourceforge.net/.) To get RippleSite running on your 
-web server, it will take a bit of Python, Apache, and PostgreSQL 
-know-how. If you don't have this, you probably shouldn't be operating a 
-RippleSite server. 
+web server, you need a fair amount of Python, Apache, and PostgreSQL 
+know-how. 
+
+The Django project website has a terrific tutorial that anyone 
+who intends to work on RippleSite as a developer should go through. 
 
 Installation 
 ------------ 
 
-RippleSite 0.3 works on the Django Python web application framework 
-version 0.95, which can be downloaded from 
-http://www.djangoproject.com/download/0.95.2/tarball/. More information 
-about installing Django can be found at 
-http://www.djangoproject.com/documentation/0.95/install/. In particular, 
+RippleSite 0.3 works on the head version of the Django Python web application framework.
+You need to check this out of subversion and install as described at 
+
+  http://www.djangoproject.com/download/  
+
 RippleSite requires the following software: 
 
 * Python 2.3 or higher (tested on 2.4) 
 * Apache + mod_python (tested on Apache 2.0 -- may be configured for 
 lighttpd + fast_cgi, not tested), although you can run the django
 development server to try it out first
-* PostgreSQL (tested on 8.0 and 8.1 -- may be configured to work on MySQL 
-or sqlite3, not tested) 
+* PostgreSQL (tested on 8.0, 8.1, 8.2)
+* an smtp mail server for sending signup confirmations.
+  gmail can be used as an smtp mail server, there is an example of this in settings_ripplesite.py
 
-The Django project website has a terrific tutorial that anyone 
-installing RippleSite should go through. 
+0. Check out the source code containing this readme file.
 
-1. Start a new Django project called 'ripplesite' by running 'python 
-django-admin.py startproject ripplesite', and copy the RippleSite files 
-to the project directory. Make sure the parent directory of the the 
-ripplesite project directory is in your PYTHONPATH so the ripplesite 
-module can be loaded.
+1. Prepare your postgres database
+
+On a debian/ubuntu box,
+
+  sudo apt-get install postgres psycopg psycopg2
+
+Create a postgres user that matches your system user, and a pg database called ripplesite
+  run ./postgres-setup.py 
+
+Prepare your settings.py 
+  cp settings_ripplesite.py settings.py
+  Edit to match what you have.
 
 2. See the file settings_ripplesite.py for settings required for 
 RippleSite. Make sure all of these fields are set in your settings.py. 
@@ -79,8 +88,12 @@ run 'python manage.py sqlindexes ripple' to output the SQL statements for
 creating database indexes -- copy or pipe these into psql to actually 
 create your indexes.) 
 
-4. Configure Apache. There are many ways to do this, but one way is to 
-put something like the following in httpd.conf: 
+4. Configure Apache.
+
+(You can skip this if you only want to run the django development server.
+The django development server should be fine unless you have a lot of users.)
+
+Put something like the following in httpd.conf: 
 
 -- 
 <Location "/"> 
@@ -105,7 +118,11 @@ configure Apache for Django + mod_python at:
 
 http://www.djangoproject.com/documentation/modpython/
 
-5. Browse to /admin/ on your site, log into the Django admin app (which 
+4.5 Instructions for running the django development server
+
+run ./run-server.sh
+
+5. Browse to http://mywebhost.com/admin/ on your site, log into the Django admin app (which 
 should hopefully be working by now), click on Currency units and create 
 the currency units you'd like your users to be able to choose on your 
 site. If you'd like to use US dollars, for example, create a currency 

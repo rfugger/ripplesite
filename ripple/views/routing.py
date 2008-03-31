@@ -141,8 +141,9 @@ class Circle:
 
     # save new locations to DB
     def save(self):
-        sqlStr = "update ripple_nodes set location = %.12f where id = %d"
+        sqlStr = "update ripple_node set location = %.12f where id = %d"
         conn = db_module.connect(DSN) # could get Django's connection here, but would need to make sure it wasn't doing anything else that might interfere/commit prematurely
+        #from django.db import connection as conn
         cursor = conn.cursor()
         try: # begin transaction
             for nodeId in self.shuffleNodes:
@@ -150,6 +151,7 @@ class Circle:
             conn.commit()
         except Exception, e:
             conn.rollback()
+        conn.close()
 
     # returns log(product of all connection distances in network)
     def getDistProduct(self):

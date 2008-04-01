@@ -4,17 +4,18 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Your Name', 'whoever@gmail.com'),
+    ('Your Name', 'thomashartman1@gmail.com'),
 )
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'postgresql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'ripplesite'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'whoever'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'somepassword'         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+DATABASE_ENGINE = 'postgresql'           
+DATABASE_NAME = 'ripplesite'             
+DATABASE_USER = 'thartman'             
+DATABASE_PASSWORD = ''         # with postgres, set to empty string if DATABASE_USER matches system user.
+                               # ... and  ./postgres-setup.py should ensure that this is the case. 
+DATABASE_HOST = ''             # Set to empty string for localhost. 
+DATABASE_PORT = ''             # Set to empty string for default. 
 
 
 # Local time zone for this installation. All choices can be found here:
@@ -26,25 +27,23 @@ TIME_ZONE = 'America/Chicago'
 # http://blogs.law.harvard.edu/tech/stories/storyReader$15
 LANGUAGE_CODE = 'en-us'
 
-SITE_ID = 1
+#SITE_ID = 1
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/thartman/ripplesite/ripple/media/'
+#MEDIA_ROOT = '/home/thartman/ripplesite/ripple/media'
 
 # URL that handles the media served from MEDIA_ROOT.
 # Example: "http://media.lawrence.com"
-MEDIA_URL = '/media'
+#MEDIA_URL = '/media'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+#ADMIN_MEDIA_PREFIX = '/ripple_admin/'
 
 # Make this unique, and don't share it with anybody.
-# as far as I understand, the secret key gets created along with some other stuff when yu run
-# python django-admin.py startproject ripplesite
-SECRET_KEY = 'secret holy gibberish which gets generated when you create a django project'
+SECRET_KEY = 'n+ogj)er-lq597qnat5quug^s8cbwxik4v7jwxi!f=@r+7p^tk'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -78,10 +77,16 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 )
 
-# for sending out automated email messages
-EMAIL_HOST = '' # set to 'TEST_DEBUG' to fake it
-EMAIL_HOST_USER = '' # leave blank if not required by host
-EMAIL_HOST_PASSWORD = '' # leave blank if not required by host
+
+# change this to whatever your real email user and password is
+# gmail makes having an smtp option easy and free for everyone,
+# but of course you can use any smtp server.
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'rippledeals@gmail.com'
+EMAIL_HOST_PASSWORD = 'myemailpassword'    
+EMAIL_PORT = 587
+
 
 # for auto-populating DjangoContext object
 # see http://www.djangoproject.com/documentation/settings/#template-context-processors
@@ -96,8 +101,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 SESSION_COOKIE_AGE = 600 # session expiry time, in seconds
 
-SITE_NAME = '' # the domain name for your Ripple site, eg, 'ripplepay.com'
-SERVICE_NAME = '' # the name of your Ripple service, eg, 'RipplePay'
+SITE_NAME = '64.22.109.73:8080' # the domain name for your Ripple site, eg, 'ripplepay.com'
+                                # 8080 is default port for django development server
+                                # usually leave port number off when running apache
+SERVICE_NAME = 'ripplepay' # the name of your Ripple service, eg, 'RipplePay'
 
 # this is the intro paragraph for the front page.  you can put html in here (it gets wrapped in a <p>).
 HOME_INTRO_TEXT = "Welcome to my ripple site!"

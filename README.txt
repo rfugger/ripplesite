@@ -55,38 +55,36 @@ You need to check this out of subversion and install as described at
 
 RippleSite requires the following software: 
 
-* Python 2.3 or higher (tested on 2.4) 
+* root acces on some unix computer. I use ubuntu, on a $20/month rented virtual host from linode.com
+  it may be possible to get ripple to work on a shared hosting provider such as dreamhost
+  where you don't have root access, but likely to be extremely difficult and not worth the effort.
+* Python (tested on 2.4) 
 * Apache + mod_python (tested on Apache 2.0 -- may be configured for 
 lighttpd + fast_cgi, not tested), although you can run the django
 development server to try it out first
 * PostgreSQL (tested on 8.0, 8.1, 8.2)
 * an smtp mail server for sending signup confirmations.
-  gmail can be used as an smtp mail server, there is an example of this in settings_ripplesite.py
+  gmail can be used as an smtp mail server, there is an example of this in settings.py
 
-0. Check out the source code containing this readme file.
 
-1. Prepare your postgres database
+0. Basic preparation
+   Check out the source code containing this readme file.
+   Install python, django head from svn, postgresql, smtp server
 
-On a debian/ubuntu box,
+  On a debian/ubuntu box,
 
-  sudo apt-get install postgres psycopg psycopg2
+  sudo apt-get install python postgres psycopg 
 
-Create a postgres user that matches your system user, and a pg database called ripplesite
+1. Edit settings.py for passwords, domain names, etc unique to your instance of ripple
+
+2. Create the ripplesite postgres database, and a postgres user that matches your system user
+
   run ./postgres-setup.py 
 
-Prepare your settings.py 
-  cp settings_ripplesite.py settings.py
-  Edit to match what you have.
-
-2. See the file settings_ripplesite.py for settings required for 
-RippleSite. Make sure all of these fields are set in your settings.py. 
-You will have to have created a database in PostgreSQL before you can
-enter the database settings.
-
-3. Run 'python manage.py syncdb' to initialize the database. (Optionally
-run 'python manage.py sqlindexes ripple' to output the SQL statements for
-creating database indexes -- copy or pipe these into psql to actually 
-create your indexes.) 
+  This assumes postgres superuser is named postgres, as is standard, and you have sudo installed,
+  and have the right to run commands as a superuser via sudo.
+       
+  run 'python manage.py syncdb'   # initialize the ripplesite database. 
 
 4. Configure Apache.
 

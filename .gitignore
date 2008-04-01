@@ -1,2 +1,6 @@
 *.pyc
 *~
+
+# you don't want to normally check changes for settings.py in, could be passwords, who knows
+# if you really do want to check in, git-add -f settings.py
+settings.py 

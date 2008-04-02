@@ -1,3 +1,7 @@
 *.pyc
 *~
+
+# WARNING: this file has passwords. before committing into git, make sure to set the passwords to something generic
+# Changes to settings.py can be done via git-add -f, but won't work without the -f flag.
+# Kind of a reminder not to do something dumb.
 settings.py

@@ -58,10 +58,9 @@ RippleSite requires the following software:
 * root acces on some unix computer. I use ubuntu, on a $20/month rented virtual host from linode.com
   it may be possible to get ripple to work on a shared hosting provider such as dreamhost
   where you don't have root access, but likely to be extremely difficult and not worth the effort.
-* Python (tested on 2.4) 
-* Apache + mod_python (tested on Apache 2.0 -- may be configured for 
-lighttpd + fast_cgi, not tested), although you can run the django
-development server to try it out first
+* Python (I'm using 2.4) 
+* Apache + mod_python (tested on Apache 2.0), 
+  although you can run the django development server to try it out first
 * PostgreSQL (tested on 8.0, 8.1, 8.2)
 * an smtp mail server for sending signup confirmations.
   gmail can be used as an smtp mail server, there is an example of this in settings.py
@@ -86,60 +85,71 @@ development server to try it out first
        
   run 'python manage.py syncdb'   # initialize the ripplesite database. 
 
+    create a django app superuser/password as the questions direct you to.
+
 4. Configure Apache.
 
-(You can skip this if you only want to run the django development server.
-The django development server should be fine unless you have a lot of users.)
+    (You can skip this if you only want to run the django development server.
+    The django development server should be fine unless you have a lot of users.)
 
-Put something like the following in httpd.conf: 
+    Put something like the following in httpd.conf: 
 
--- 
-<Location "/"> 
-  SetHandler python-program 
-  PythonHandler django.core.handlers.modpython 
-  SetEnv DJANGO_SETTINGS_MODULE ripplesite.settings
-  PythonPath "['/path/to/parent'] + sys.path" 
-  PythonDebug Off 
-</Location> 
-  
-<Location "/media/">
-  SetHandler None 
-</Location> 
--- 
+    -- 
+    <Location "/"> 
+      SetHandler python-program 
+      PythonHandler django.core.handlers.modpython 
+      SetEnv DJANGO_SETTINGS_MODULE ripplesite.settings
+      PythonPath "['/path/to/parent'] + sys.path" 
+      PythonDebug Off 
+    </Location> 
 
-* /path/to/parent is the path to the parent directory of the
-ripplesite project directory
+    <Location "/media/">
+      SetHandler None 
+    </Location> 
+    -- 
 
-You must also create a symbolic link to the admin media files from 
-within your Apache document root. There is more information on how to 
-configure Apache for Django + mod_python at:
+    * /path/to/parent is the path to the parent directory of the
+    ripplesite project directory
 
-http://www.djangoproject.com/documentation/modpython/
+    You must also create a symbolic link to the admin media files from 
+    within your Apache document root. There is more information on how to 
+    configure Apache for Django + mod_python at:
+
+    http://www.djangoproject.com/documentation/modpython/
 
 4.5 Instructions for running the django development server
 
-run ./run-server.sh
+  run ./run-server.sh
 
-5. Browse to http://mywebhost.com/admin/ on your site, log into the Django admin app (which 
-should hopefully be working by now), click on Currency units and create 
-the currency units you'd like your users to be able to choose on your 
-site. If you'd like to use US dollars, for example, create a currency 
-unit with short name 'USD', long name 'US Dollar', symbol '$', and value 
-1.0. You can always create more later, but you'll need at least one to 
-start with. 
+5. Browse to
 
-If you have multiple units that you want Ripple to be able to 
-automatically convert between, set their relative values in the value 
-fields. For example, if you had US dollars set to a value of 1.0, 
-Canadian dollars would be set to around 0.90 because one dollar Canadian 
-is currently worth about 90 cents US. (I've included the script 
-getrates.py in the scripts directory which will fetch current exchange 
-rates from Yahoo and output SQL statements for updating the database -- 
-that should be a decent starting point for piecing together an 
-auto-update system.) 
+     http://mywebhost.com/admin/ (apache)
+     or http://mywebhost.com:8080/admin (django dev server)
+
+
+   log into the Django admin app using the password you created during the syncdb step earlier.
+   Click on Currency units and create 
+   the currency units you'd like your users to be able to choose on your 
+   site. If you'd like to use US dollars, for example, create a currency 
+   unit with short name 'USD', long name 'US Dollar', symbol '$', and value 
+   1.0. You can always create more later, but you'll need at least one to 
+   start with. 
+
+   If you have multiple units that you want Ripple to be able to 
+   automatically convert between, set their relative values in the value 
+   fields. For example, if you had US dollars set to a value of 1.0, 
+   Canadian dollars would be set to around 0.90 because one dollar Canadian 
+   is currently worth about 90 cents US. (I've included the script 
+   getrates.py in the scripts directory which will fetch current exchange 
+   rates from Yahoo and output SQL statements for updating the database -- 
+   that should be a decent starting point for piecing together an 
+   auto-update system.) 
 
 6. Browse to the root on your site and create a new user. Send out some 
 invitations to people you know... 
+
+  htpp://mywebhost.com (apache)
+  http://mywebhost.com:8080 (django dev server)
 
 7. You can customize your home page by modifying the file 
 ripple/templates/home.html. 
@@ -155,6 +165,10 @@ will be able to search specifically for Ripple items.
 performance by creating the indexes generated by python manage.py 
 sqlindexes and tuning your PostgreSQL installation. See 
 http://www.revsys.com/writings/postgresql-performance.html. 
+
+  Note: This documentation may be out of date.
+        I think django head does indexes automatically
+        (Double check this before deleting point 9 though.)
 
 Contact Info 
 ------------ 

@@ -59,20 +59,27 @@ RippleSite requires the following software:
   it may be possible to get ripple to work on a shared hosting provider such as dreamhost
   where you don't have root access, but likely to be extremely difficult and not worth the effort.
 * Python (I'm using 2.4) 
-* Apache + mod_python (tested on Apache 2.0), 
-  although you can run the django development server to try it out first
+* Python modules
+    -- django, head (I installed via svn co http://code.djangoproject.com/svn)
+    -- psycopg (I installed via apt-get python-psycopg)
+
+* Apache + mod_python (I'm using Apache 2.0), 
+  It is recommended to run the django development server to try it out first, as this is easier than apache setup
+  on ubuntu, apt-get install apache2 libapache2-mod-python
+
 * PostgreSQL (tested on 8.0, 8.1, 8.2)
+    I installed via apt-get install postgresql
 * an smtp mail server for sending signup confirmations.
-  gmail can be used as an smtp mail server, there is an example of this in settings.py
+  I am using gmail can be used as an smtp mail server, there is an example of this in settings.py
 
 
 0. Basic preparation
    Check out the source code containing this readme file.
-   Install python, django head from svn, postgresql, smtp server
+   Install python, django head from svn, postgresql, smtp server (which can just be a gmail account)
 
   On a debian/ubuntu box,
 
-  sudo apt-get install python postgres psycopg 
+  sudo apt-get install python postgres python-psycopg 
 
 1. Edit settings.py for passwords, domain names, etc unique to your instance of ripple
 

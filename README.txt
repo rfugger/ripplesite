@@ -61,7 +61,7 @@ RippleSite requires the following software:
 * Python (I'm using 2.4) 
 * Python modules
     -- django, head (I installed via svn co http://code.djangoproject.com/svn)
-    -- psycopg (I installed via apt-get python-psycopg)
+    -- psycopg (I installed via apt-get install python-psycopg)
 
 * Apache + mod_python (I'm using Apache 2.0), 
   It is recommended to run the django development server to try it out first, as this is easier than apache setup
@@ -70,7 +70,7 @@ RippleSite requires the following software:
 * PostgreSQL (tested on 8.0, 8.1, 8.2)
     I installed via apt-get install postgresql
 * an smtp mail server for sending signup confirmations.
-  I am using gmail can be used as an smtp mail server, there is an example of this in settings.py
+  I am using gmail for this, with the settings in settings.py.
 
 
 0. Basic preparation

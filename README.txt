@@ -96,8 +96,12 @@ RippleSite requires the following software:
 
 4. Configure Apache.
 
-    (You can skip this if you only want to run the django development server.
-    The django development server should be fine unless you have a lot of users.)
+    Note: This may need some fixing after switching to django head and making the setup somewhat simpler.
+    I am currently doing dev running the django server and haven't actually tried running off apache yet.
+    (Thomas Hartman) 
+
+    You can skip this if you only want to run the django development server.
+    The django development server should be fine unless you have a lot of users.
 
     Put something like the following in httpd.conf: 
 

@@ -9,6 +9,7 @@ from django.shortcuts import render_to_response
 from django.db.models import Q
 from django.core.mail import send_mail
 from django.utils.html import escape
+from django.utils import safestring
 
 from ripplesite.ripple.models import *
 import routing
@@ -197,6 +198,8 @@ def login(request):
                     errors.append('Your confirmation email could not be resent. <a href="/contact/">Please contact us</a> if you cannot find your original confirmation email.')
         else:
             errors.append('Invalid login details. Please try again or <a href="/register/">click here to sign up as a new user</a>.')
+
+    errors  = [safestring.mark_safe(item) for item in errors]
 
     # display login form
     d['infos'] = errors

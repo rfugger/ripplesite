@@ -35,6 +35,8 @@ urlpatterns = patterns(
     (r'^requestPayment/(?P<otherUserId>\d+)/?$', 'payment.paymentForm', {'is_request': True}),
     (r'^registerIOU/?$', 'payment.registerIOU'),
     (r'^registerIOU/(\d+)/?$', 'payment.registerIOU'),
+
+    (r'^rippledeals$','rippledeals'),
     
     (r'^accounts/?$', 'connection.accountList'),
     (r'^accounts/(?P<acctId>\d+)/?$', 'connection.accountDetail'),

@@ -620,3 +620,7 @@ def donate(request):
 def getRateProposalAccts(node):
     return Account.objects.filter(owner=node, shared_data__node_to_confirm=node)
 
+def rippledeals(request):
+    #latest_poll_list = Poll.objects.all().order_by('pub_date')[:3]
+    testvar="testvar"
+    return render_to_response('rippledeals/index.html',{'testvar':testvar})

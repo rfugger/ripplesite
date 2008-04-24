@@ -1,0 +1,64 @@
+html,body{margin:0;padding:0}
+
+body{font: 76% arial,sans-serif}
+
+p{margin:0 10px 10px}
+
+a{color: #006}
+
+div#header{position:relative}
+div#header h1{
+  height:80px;line-height:80px;margin:0;
+  padding-left:10px;background: #EEE;color: #79B30B}
+div#header a{position:absolute;right:0;top:23px}
+
+div#content p{line-height:1.4}
+
+div#navigation{
+  background:#B9CAFF;
+  float:left;
+  width:40%;
+}
+
+
+/* div#navigation{float:left;width:50%} */
+
+div#extra{background:#FF8539}
+div#extra{float:left;width:59.9%}
+
+div#footer{background: #333;color: #FFF}
+
+/* div#footer p{margin:0 0 0 0;padding:5px 10px} */
+
+div#footer a{display:inline;padding:0;color: #C6D5FD}
+div#footer{clear:left;width:100%}
+
+
+.pbox {
+    /* border: 2px solid #73a1ca; */
+    margin-left:20px;
+    border-collapse: collapse;
+    /*margin: 0 5px 10px 5px;*/
+    /*width: 285px;
+    padding: 5px;
+    float: left;*/
+}
+
+/*
+
+
+.widelogin { margin: 0px; padding: 0px; }
+.widelogin table { border-collapse: collapse;  }
+.widelogin td { white-space: nowrap; }
+.widelogin input.logtxt { color:black; width: 135px}
+.widelogin td.right { text-align: right}
+.widelogin button.btn { margin: 0px; padding: 2px 3px 2px 3px}
+.widelogin a { padding-left: 1em }
+
+
+*/
+
+.iform button {background-color:#e9e9e9; border: 1px solid #336699; vertical-align: bottom}
+.btn { background-color:#e9e9e9;
+       border: 1px solid #336699; 
+       margin: 0 5px 0 5px; vertical-align: bottom }

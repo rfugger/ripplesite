@@ -1,0 +1,34 @@
+<h1>RippleDeals FAQ</h1>
+
+<p>Q. How does a ripple credit path work?</p>
+
+<p>A. Say Alice and Bob give each other a $200 credit limit, and Bob and Chris give each other a $300 credit limit within the RippleDeals marketplace.</p>
+
+<p>Chris <-> ($200,$200) <-> Bob <-> ($300,$300) -> Alice</p>
+
+<p>Chris can now buy on credit from Alice, using up to $200 in credit from Bob. And Alice has $200 in credit with Chris, also through Bob.</p>
+
+<p>Say Chris now buys something on credit from Alice for $150. Some credit has been used, so the credit path now looks like
+</p>
+
+<p>Chris <-> ($50,$350) <-> Bob <-> ($150,$450) <-> Alice</p>
+
+<p>Chris owes Bob $150, so his credit limit is reduced to $50 (200-150). And Bob now has a $350 credit limit with Chris (200+150). A similar calculation takes place between Bob and Alice.</p>
+
+<p>Another way of looking at this situation: Chris still has some available credit with Alice, but not as much as he started with. Bob also has less available credit with Alice, because he let Chris use some of his "Alice" credit. However, Bob now has more available credit with Chris.</p>
+
+
+<p>Maybe after a few months of having the debt in her RippleDeals account, Alice needs cash.  In that case, she doesn't ask Chris to settle in cash. She asks Bob, who she knows and trusts -- that's why she granted him a credit account in the first place.  If Bob needs cash, he can ask Chris for it. Bob might ask Chris to pay his debt in cash even if Alice hasn't asked Bob to settle in cash.* Alternatively, they could all leave the debts on the books and keep using their credit limits to do ripple deals as opportunities arise.</p>
+
+<p>For example: maybe Alice needs something that Doug has an offer for $100, where Doug and Chris have a mutual credit limit of $100.</p>
+
+<p> Doug <-> ($100,$100) <-> Chris <-> ($50,$350) <-> Bob <-> ($150,$450) <-> Alice</p>
+
+<p>A  credit payment from Alice to Doug for $100 ripples down the chain in the opposite direction.</p>
+
+<p> Doug <-> ($200,$0) <-> Chris <-> ($150,$250) <-> Bob <-> ($250,$350) <-> Alice</p>
+
+<p>In the end Chris owes Doug $100 and Bob $50, and Bob owes Alice $50.</p>
+
+<p>* Debt settlement . in cash, or check, or paypal, or whatever method . is between members, and happens outside the scope of RippleDeals, except for the bookkeeping.</p>
+ 

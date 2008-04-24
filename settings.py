@@ -62,6 +62,8 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'ripplesite.urls'
 
+PROJECTDIR = '/home/thartman/ripplesite'
+
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates".
     # Always use forward slashes, even on Windows.
@@ -84,7 +86,7 @@ INSTALLED_APPS = (
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'rippledeals@gmail.com'
-EMAIL_HOST_PASSWORD = 'mypassword'    
+EMAIL_HOST_PASSWORD = ''    
 EMAIL_PORT = 587
 
 

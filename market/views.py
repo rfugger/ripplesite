@@ -12,7 +12,7 @@ from ripplesite.ripple.views import checkLogin, getSessionInfos
 def main(request):
     "Market front page.  View all ads in the last 30 days for now."
     userNode = checkLogin(request)
-    if not userNode: return HttpResponseRedirect('/login/?redirect=%s' % request.path)
+    #if not userNode: return HttpResponseRedirect('/login/?redirect=%s' % request.path)
     d = {}
     cutoff_date = datetime.now() - timedelta(days=30)
     ads = Advertisement.objects.filter(posted_date__gt=cutoff_date)
@@ -46,7 +46,7 @@ def new_ad(request):
 
 def view_ad(request, ad_id):
     userNode = checkLogin(request)
-    if not userNode: return HttpResponseRedirect('/login/?redirect=%s' % request.path)
+    #if not userNode: return HttpResponseRedirect('/login/?redirect=%s' % request.path)
     try:
         ad = Advertisement.objects.get(pk=ad_id)
     except Advertisement.DoesNotExist:

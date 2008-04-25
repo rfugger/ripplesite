@@ -26,8 +26,8 @@ div#navigation{
 
 /* div#navigation{float:left;width:50%} */
 
-div#extra{background:#FF8539}
-div#extra{float:left;width:59.9%}
+div#suggestions{background:#FF8539}
+div#suggestions{float:left;width:59.9%}
 
 div#footer{background: #333;color: #FFF}
 
@@ -50,13 +50,13 @@ div#footer{clear:left;width:100%}
 /*
 
 
-.widelogin { margin: 0px; padding: 0px; }
-.widelogin table { border-collapse: collapse;  }
-.widelogin td { white-space: nowrap; }
-.widelogin input.logtxt { color:black; width: 135px}
-.widelogin td.right { text-align: right}
-.widelogin button.btn { margin: 0px; padding: 2px 3px 2px 3px}
-.widelogin a { padding-left: 1em }
+.dealform { margin: 0px; padding: 0px; }
+.dealform table { border-collapse: collapse;  }
+.dealform td { white-space: nowrap; }
+.dealform input.logtxt { color:black; width: 135px}
+.dealform td.right { text-align: right}
+.dealform button.btn { margin: 0px; padding: 2px 3px 2px 3px}
+.dealform a { padding-left: 1em }
 
 
 */

@@ -1,3 +1,4 @@
+<h4>Login</h4>
 <form action = "/login/" name="login" method="post">
   <input type="hidden" name="redirect" value={% if redirect %}"{{redirect|escape}}"{% else %}"/summary/"{% endif %}/>
   <table class="layout">
@@ -6,4 +7,7 @@
     <tr><td><label for="password">Password</label></td><td><input type="password" name="password" id="password"/></td></tr>
     <tr><td>&nbsp;</td><td><input class="button" type="submit" value="Login"/></td></tr>
   </table>
+  <p><a href="/forgotPassword/">Forgot your password?</a></p>
+  <!-- <h4>Register</h4> -->
+  <!--  <p><a href='/register/'>Sign up as a new user</a></p> -->
 </form>

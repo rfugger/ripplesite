@@ -1,15 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<h3>{{SERVICE_NAME}} Home</h3>
-<p>{{HOME_INTRO_TEXT}}</p>
+    <!-- <h3>{{SERVICE_NAME}} Home</h3>
+    <p>{{HOME_INTRO_TEXT}}</p> 
 
-<a href="http://ripple.sourceforge.net/">
-  <img src="/site_media/ripple_promo.png" alt="Ripple project homepage."/></a>
+    <a href="http://ripple.sourceforge.net/">
+      <img src="/site_media/ripple_promo.png" alt="Ripple project homepage."/></a> -->
 
-<h4>Login</h4>
-{% include "loginForm.html" %}
-<p><a href="/forgotPassword/">Forgot your password?</a></p>
-<h4>Register</h4>
-<p><a href='/register/'>Sign up as a new user</a></p>
-
+    {% include "loginForm.html" %}
 {% endblock %}

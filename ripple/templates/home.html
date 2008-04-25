@@ -1,10 +1,93 @@
 {% extends "base.html" %}
 {% block content %}
-    <!-- <h3>{{SERVICE_NAME}} Home</h3>
-    <p>{{HOME_INTRO_TEXT}}</p> 
 
-    <a href="http://ripple.sourceforge.net/">
-      <img src="/site_media/ripple_promo.png" alt="Ripple project homepage."/></a> -->
-    {% include "rippledeals/home.html" %}
+    <div id="content">
+      <p>RippleDeals is a marketplace where you buy on credit
+      granted by people who trust you. Or you sell on credit, which
+      is guaranteed by people you trust. Credit is used in a
+      person-to-person <a href="/site_media/faq.html">credit path</a> which can be many people
+      long.</p><!--
+        <p>Instead of letting the banking system determine your credit, you trust the people in your life who have earned it.</p>-->
+
+      <p>Since RippleDeals doesn't depend on the banking system,
+      you can do deals without using credit cards, writing a check,
+      or handling cash.</p>
+
+      <p>You also have a simple way to start doing business in
+      emerging currencies such as community currencies and digital
+      gold, or even online gaming currencies. Of course, dollars,
+      euro, and other mainstream national currencies are fine
+      too.</p><!--
+
+
+<p>Since credit flows along a trust chain, where each link has a high degree of confidence in the next, scams that are common in other online marketplaces simply won't work here. </p>
+-->
+
+      <p>RippleDeals is free.</p>
+    </div>
+
+    <div id="navigation">
+      <div class="pbox" id="login_main_form">
+        <form method="post" action="/searchdeals" onsubmit=
+        "return chklogin(this);" style="margin: 0pt;">
+          <div>
+            <input name="op" value="login_main" type="hidden">
+          </div>
+
+          <table class="dealform">
+            <tbody>
+              <tr>
+                <td>Deal</td>
+
+                <td>Location</td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><input class="logtxt" value=
+                "massage" name="user_login" id=
+                "user_login_main" maxlength="20" type="text">
+                <input class="logtxt" value="brooklyn" id=
+                "passwd_login_main" name="passwd_login" maxlength=
+                "100" type="text"></td>
+              </tr>
+
+              <tr>
+                <td colspan="2"><span id=
+                "WRONG_PASSWORD_login_main" class=
+                "error"></span><span id="status_login_main" class=
+                "error"></span></td>
+              </tr>
+
+              <tr>
+                <td style="float: left;"><button class="btn" name=
+                "btn_search_wanted" type="submit">search wanted</button>
+		<br>
+		<button class="btn" name= "btn_search_offered" type="submit">search
+                offered</button></td>
+                
+                <td><button class="btn" name=
+                "btn_post_wanted" type="submit">post
+                wanted</button>
+		<br>
+		<button class="btn" name=
+                "btn_post_offered" type="submit">post
+                offered</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+
+    <div id="suggestions">
+      <p>massage | carpentry | used clothing<br>
+      cooking | moving | used books | computer help<br>
+      <a href="#">more deals</a></p>
+      <p>brooklyn | prenzlauerberg | 10364, de | germany | 10437, berlin | greenpoint, brooklyn <br>
+      santa monica | helsinki | mexico city | bocas del toro, panama | miracle mile, los angeles<br>
+      pacific time | north america <br>
+      <a href="#">more neighborhoods</a></p>
+    </div>
+
     
 {% endblock %}

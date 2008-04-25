@@ -36,8 +36,6 @@ urlpatterns = patterns(
     (r'^registerIOU/?$', 'payment.registerIOU'),
     (r'^registerIOU/(\d+)/?$', 'payment.registerIOU'),
 
-    (r'^rippledeals$','rippledeals'),
-    
     (r'^accounts/?$', 'connection.accountList'),
     (r'^accounts/(?P<acctId>\d+)/?$', 'connection.accountDetail'),
     (r'^accounts/(?P<acctId>\d+)/rate/(?P<action>accept|reject)/?$', 'connection.interestRateAction'),

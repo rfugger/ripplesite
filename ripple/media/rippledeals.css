@@ -8,9 +8,12 @@ a{color: #006}
 
 div#header{position:relative}
 div#header h1{
-  height:80px;line-height:80px;margin:0;
+  height:70px;line-height:70px;margin:0;
   padding-left:10px;background: #EEE;color: #79B30B}
-div#header a{position:absolute;right:0;top:23px}
+div#header h4{  
+  margin:0;
+  padding-left:120px;background: #EEE;}
+div#header a{background: #EEE;height:80px} 
 
 div#content p{line-height:1.4}
 

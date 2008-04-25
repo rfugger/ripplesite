@@ -22,19 +22,18 @@ from socket import gaierror
 
 def home(request):
     userNode = checkLogin(request)
+    d = {}
     if not userNode: # not logged in - show home page
-        request.session.set_test_cookie()
-
-        d = {}
+        request.session.set_test_cookie()        
         # some usage data for front page
         d['num_users'] = Node.objects.count()
         d['num_accounts'] = SharedAccountData.objects.count()
         d['num_payments'] = Payment.objects.count()
         
         d['HOME_INTRO_TEXT'] = settings.HOME_INTRO_TEXT
-        return render_to_response('home.html', d, context_instance=RequestContext(request))
-    else: # logged in - show Summary
-        return HttpResponseRedirect('/summary/')
+    return render_to_response('home.html', d, context_instance=RequestContext(request))
+    # else: # logged in - show Summary
+    #    return HttpResponseRedirect('/summary/')
 
 def summary(request):
     """The users home page"""

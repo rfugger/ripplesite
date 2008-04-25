@@ -4,36 +4,41 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>{% block title %}{{SERVICE_NAME|escape}}{% endblock %}</title>
-  <link rel="stylesheet" href="/site_media/ripple.css" type="text/css" />
+  <link rel="stylesheet" href="/site_media/rippledeals.css" type="text/css" />
   {% block script %}{% endblock %}
 </head>
 
 <body>
-<div id="wrap">
-    <div id="title">
-      <a href="/"><img src="/site_media/logo3.{% if iexplorer %}gif{% else %}png{% endif %}" /></a>
-    </div>
+<!-- <div id="wrap"> -->
+    <!-- <div id="title"> -->
+    <!--       <a href="/"><img src="/site_media/logo3.{% if iexplorer %}gif{% else %}png{% endif %}" /></a> -->
+    <!--     </div> -->
 
-    <div id="titlemenu">
-      <a href="/" class="leftitem">Home</a>
-      |<a href="/about/">About</a>
-      |<a href="/faq/">FAQ</a>
-      |<a href="/donate/">Donate</a>
-      |<a href="/contact/">Contact</a>
-    </div>
+    <div id="header">
+      <!-- <img src="/site_media/ripplelogo.jpg"><img src="/site_media/RippleDealsBETA.png"> -->
+      <!-- <table><tr><td><img src="/site_media/ripplelogo.jpg"></td><td><h1>RippleDeals</h1></td></row></table> -->
+      <h1><img src="/site_media/ripplelogo.jpg">RippleDeals</h1>
 
-    <div id="nodemenu">
-      {% if userNode %}
-      Logged in as: {{ userNode.username|escape}}
-      |<a href="/summary/" class="leftitem">Summary</a>
-      |<a href="/accounts/">Connections</a>
-      |<a href="/payments/">Payments</a>
-      |<a href="/market/">Marketplace</a>
-      |<a href="/profile/">Profile</a>
-      |<a href="/logout/">Log out</a>
-      {% else %}
-      <a href="/login/" class="leftitem">Log in</a>|<a href="/register/">Sign up</a>
-      {% endif %}
+      <h4> <a href="/" class="leftitem">Home</a>
+	   |<a href="/about/">About</a>
+	   |<a href="/faq/">FAQ</a>
+	   |<a href="/donate/">Donate</a>
+	   |<a href="/contact/">Contact</a>
+      </h4>
+      <h4>
+	  {% if userNode %}
+	  Logged in as: {{ userNode.username|escape}}
+	  |<a href="/summary/" class="leftitem">Summary</a>
+	  |<a href="/accounts/">Connections</a>
+	  |<a href="/payments/">Payments</a>
+	  |<a href="/market/">Marketplace</a>
+	  |<a href="/profile/">Profile</a>
+	  |<a href="/logout/">Log out</a>
+	  {% else %}
+	  <a href="/login/" class="leftitem">Log in</a>
+	  |<a href="/register/">Sign up</a>
+	  {% endif %}
+      </h4>
     </div>
 
     <div id="content">
@@ -43,10 +48,18 @@
 
     <hr id="pad"/>
 
-    <div id="bottommenu">
-      <a href="/" class="leftitem">Home</a>|<a href="/about/">About</a>|<a href="/faq/">FAQ</a>|<a href="/donate/">Donate</a>|<a href="/contact/">Contact</a>
+    <div id="footer">
+      <!-- was "rippledeals uses rippled" but that wasn't quite true and it's not clear when it will be true. so... -->
+      <p>RippleDeals is helping to develop <a href="#">rippled</a>,
+	an open source payment routing server, to find trust chains and payment paths
+	between customers of banks, barter clubs, community currencies,
+	online accounting software, and others.<br>
+        RippleDeals and rippled are based on earlier code, also open source,
+	at <a href="http://www.ripplepay.com">ripplepay.com</a>.<br>
+	When rippled is mature, RippleDeals hopes to be the first rippled client.
+      <br><a href="#">Write your own Ripple Client.</a></p>
     </div>
 
-</div>
+<!-- </div> -->
 </body>
 </html>

@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{% block title %}{{SERVICE_NAME|escape}} - Marketplace{% endblock %}
+{% block title %}{{ SERVICE_NAME }} - Marketplace{% endblock %}
 {% block content %}
-    <h3>{{ ad.title|escape }}</h3>
+    <h3>{{ ad.title }}</h3>
 
     {% include "info.html" %}
 
-    <p style="font-size:smaller;"><i>Posted by {{ ad.user.name|escape }}
+    <p style="font-size:smaller;"><i>Posted by {{ ad.user.name }}
 	on {{ ad.posted_date|date:"d M Y"}}.</i></p>
-    <p class="ad-text">{{ ad.text|escape }}</p>
+    <p class="ad-text">{{ ad.text }}</p>
 
     {% ifnotequal userNode ad.user %}
 	<h4>Contact seller about this ad</h4>

@@ -45,13 +45,15 @@ def new_ad(request):
     return render_to_response('new_ad.html', d, context_instance=RequestContext(request))
 
 def view_ad(request, ad_id):
-    userNode = checkLogin(request)
+
+    d = {}
+    d['userNode'] = checkLogin(request)
     #if not userNode: return HttpResponseRedirect('/login/?redirect=%s' % request.path)
     try:
         ad = Advertisement.objects.get(pk=ad_id)
     except Advertisement.DoesNotExist:
         return HttpResponseRedirect('../')
-    d = {}
+
     
     if request.method == 'POST':
         # *** todo: actually send an email here.
@@ -60,5 +62,6 @@ def view_ad(request, ad_id):
     
     d['ad'] = ad
     d['infos'] = getSessionInfos(request)
+    d['request'] = request
     return render_to_response('view_ad.html', d, context_instance=RequestContext(request))
 

@@ -9,17 +9,31 @@
 	on {{ ad.posted_date|date:"d M Y"}}.</i></p>
     <p class="ad-text">{{ ad.text }}</p>
 
-    {% ifnotequal userNode ad.user %}
-	<h4>Contact seller about this ad</h4>
-	<form action="." method="post">
-	<textarea name="body" style="width:500px; height:80px;">{{ values.body }}</textarea>
-	<p><input class="button" type="submit" value="Send" /></p>
-	</form>
 
-	<p><a href="/payUser/{{ ad.user.id }}/">Pay seller</a></p>
+    {% ifequal userNode None %}
+        <a href="/login?redirect={{request.path}}">Contact poster about this ad</a>
     {% else %}
-	{# link to remove this ad #}
-    {% endifnotequal %}
+        
+	{% ifnotequal userNode ad.user %}
+	    <h4>Contact poster about this ad</h4>
+	    <form action="." method="post">
+	    <textarea name="body" style="width:500px; height:80px;">{{ values.body }}</textarea>
+	    <p><input class="button" type="submit" value="Send" /></p>
+	    </form>
 
-    <p><a href="../">Return to marketplace main page</a></p>
+	    <p><a href="/payUser/{{ ad.user.id }}/">Pay seller</a></p>
+	{% else %}
+	    <h4>Edit your ad ad</h4>
+	    <!-- <form action="." method="post">
+	    <textarea name="body" style="width:500px; height:80px;">{{ values.body }}</textarea>
+	    <p><input class="button" type="submit" value="Send" /></p>
+	    </form> -->
+
+	    {# link to remove this ad #}
+	{% endifnotequal %}
+    {% endifequal %}
+
+
+
+    <!-- <p><a href="../">Return to marketplace main page</a></p> -->
 {% endblock %}

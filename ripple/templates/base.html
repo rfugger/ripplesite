@@ -42,17 +42,22 @@
     </div>
 
     <div id="content">
-    {% block content %}
-    {% endblock %}
+	{% block content %}
+	{% endblock %}
+    </div>
+    <div id="dealsearch">
+        {% block dealsearch %}
+	{% endblock %}
     </div>
 
-    <hr id="pad"/>
+
+    <!-- <hr id="pad"/> -->
 
     <div id="footer">
     {% block footer %}
     {% endblock %}    
     </div>
 
-<!-- </div> -->
+
 </body>
 </html>

@@ -1,0 +1,66 @@
+
+	    <div id="dealform">
+	      <!-- <div class="pbox"> -->
+		<!-- <form method="post" action="/searchdeals" onsubmit=
+		"return chklogin(this);" style="margin: 0pt;"> -->
+		<form method="get" action="/market/" onsubmit=
+		"return chklogin(this);" style="margin: 0pt;">
+		  <div>
+		    <input name="op" value="login_main" type="hidden">
+		  </div>
+
+		  <table class="dealform">
+		    <tbody>
+		      <tr>
+			<td>Deal Category</td>
+
+			<td>Location</td>
+		      </tr>
+
+		      <tr>
+			<td colspan="2"><input class="logtxt" value=
+			"massage" name="user_login" id=
+			"user_login_main" maxlength="20" type="text">
+			<input class="logtxt" value="brooklyn" id=
+			"passwd_login_main" name="passwd_login" maxlength=
+			"100" type="text"></td>
+		      </tr>
+
+		      <tr>
+			<td colspan="2"><span id=
+			"WRONG_PASSWORD_login_main" class=
+			"error"></span><span id="status_login_main" class=
+			"error"></span></td>
+		      </tr>
+
+		      <tr>
+			<td style="float: left;"><button class="btn" name=
+			"btn_search_wanted" type="submit">search wanted</button>
+			<br>
+			<button class="btn" name= "btn_search_offered" type="submit">search
+			offered</button></td>
+
+			<td><button class="btn" name=
+			"btn_post_wanted" type="submit">post
+			wanted</button>
+			<br>
+			<button class="btn" name=
+			"btn_post_offered" type="submit">post
+			offered</button></td>
+		      </tr>
+		    </tbody>
+		  </table>
+		</form>
+	      <!-- </div> -->
+	    </div>
+
+	    <div id="suggestions">
+	      <p>massage | carpentry | used clothing<br>
+	      cooking | moving | used books | computer help<br>
+	      <a href="#">more deal categories</a></p>
+	      <p>brooklyn | prenzlauerberg | 10364, de | germany | 10437, berlin | greenpoint, brooklyn <br>
+	      santa monica | helsinki | mexico city | bocas del toro, panama | miracle mile, los angeles<br>
+	      pacific time | north america <br>
+	      <a href="#">more locations</a></p>
+	    </div>
+

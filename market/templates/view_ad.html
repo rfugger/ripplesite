@@ -1,26 +1,25 @@
 {% extends "base.html" %}
 {% block title %}{{SERVICE_NAME|escape}} - Marketplace{% endblock %}
 {% block content %}
-<h3>{{ ad.title|escape }}</h3>
+    <h3>{{ ad.title|escape }}</h3>
 
-{% include "info.html" %}
+    {% include "info.html" %}
 
-<p style="font-size:smaller;"><i>Posted by {{ ad.user.name|escape }} 
-  on {{ ad.posted_date|date:"d M Y"}}.</i></p>
-<p class="ad-text">{{ ad.text|escape }}</p>
+    <p style="font-size:smaller;"><i>Posted by {{ ad.user.name|escape }}
+	on {{ ad.posted_date|date:"d M Y"}}.</i></p>
+    <p class="ad-text">{{ ad.text|escape }}</p>
 
-{% ifnotequal userNode ad.user %}
-<h4>Contact seller about this ad</h4>
-<form action="." method="post">
-<textarea name="body" style="width:500px; height:80px;">{{ values.body }}</textarea>
-<p><input class="button" type="submit" value="Send" /></p>
-</form>
+    {% ifnotequal userNode ad.user %}
+	<h4>Contact seller about this ad</h4>
+	<form action="." method="post">
+	<textarea name="body" style="width:500px; height:80px;">{{ values.body }}</textarea>
+	<p><input class="button" type="submit" value="Send" /></p>
+	</form>
 
-<p><a href="/payUser/{{ ad.user.id }}/">Pay seller</a></p>
-{% else %}
-{# link to remove this ad #}
-{% endifnotequal %}
+	<p><a href="/payUser/{{ ad.user.id }}/">Pay seller</a></p>
+    {% else %}
+	{# link to remove this ad #}
+    {% endifnotequal %}
 
-<p><a href="../">Return to marketplace main page</a></p>
-
+    <p><a href="../">Return to marketplace main page</a></p>
 {% endblock %}

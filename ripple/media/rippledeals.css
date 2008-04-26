@@ -15,16 +15,23 @@ div#header h4{
   padding-left:120px;background: #EEE;}
 div#header a{background: #EEE;height:80px} 
 
-div#content p{line-height:1.4}
+/* div#content p{line-height:1.4} */
 
-div#navigation{
+#content
+{
+  background-color: white;
+  padding-left: 10px;
+}
+
+div#dealform{
   background:#B9CAFF;
   float:left;
   width:40%;
+
 }
 
 
-/* div#navigation{float:left;width:50%} */
+/* div#dealform{float:left;width:50%} */
 
 div#suggestions{background:#FF8539}
 div#suggestions{float:left;width:59.9%}
@@ -37,15 +44,15 @@ div#footer a{display:inline;padding:0;color: #C6D5FD}
 div#footer{clear:left;width:100%}
 
 
-.pbox {
+/* .pbox {
     /* border: 2px solid #73a1ca; */
-    margin-left:20px;
+    margin-left:20px; 
     border-collapse: collapse;
     /*margin: 0 5px 10px 5px;*/
     /*width: 285px;
     padding: 5px;
     float: left;*/
-}
+} */
 
 /*
 

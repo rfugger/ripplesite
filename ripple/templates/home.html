@@ -5,7 +5,7 @@
       <p>RippleDeals is a marketplace where you buy on credit
       granted by people who trust you. Or you sell on credit, which
       is guaranteed by people you trust. Credit is used in a
-      person-to-person <a href="/site_media/faq.html">credit path</a> which can be many people
+      person-to-person <a href="/creditpath">credit path</a> which can be many people
       long.</p><!--
         <p>Instead of letting the banking system determine your credit, you trust the people in your life who have earned it.</p>-->
 
@@ -39,7 +39,7 @@
           <table class="dealform">
             <tbody>
               <tr>
-                <td>Deal</td>
+                <td>Deal Category</td>
 
                 <td>Location</td>
               </tr>
@@ -84,7 +84,7 @@
     <div id="suggestions">
       <p>massage | carpentry | used clothing<br>
       cooking | moving | used books | computer help<br>
-      <a href="#">more deals</a></p>
+      <a href="#">more deal categories</a></p>
       <p>brooklyn | prenzlauerberg | 10364, de | germany | 10437, berlin | greenpoint, brooklyn <br>
       santa monica | helsinki | mexico city | bocas del toro, panama | miracle mile, los angeles<br>
       pacific time | north america <br>
@@ -92,4 +92,10 @@
     </div>
 
     
+{% endblock %}
+
+{% block footer %}
+    users: {{ num_users }}<br>
+    accounts: {{ num_accounts }}<br>
+    payments: {{ num_payments }}<br>
 {% endblock %}

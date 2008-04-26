@@ -19,6 +19,8 @@ import datetime, re, random, sha
 from smtplib import SMTPException
 from socket import gaierror
 
+def creditpath(request):
+    return render_to_response('creditpath.html')
 
 def home(request):
     userNode = checkLogin(request)

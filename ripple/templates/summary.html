@@ -66,14 +66,8 @@ You may accept or reject invitations by clicking the links.</p>
 {% endif %}
 
 <a name="offer"></a>
-<h4>Connect to more people</h4>
 <p>You must create connection accounts with others in order to send and receive payment.</p>
-<form action="/offer/" name="creditOffer" method="post">
-  <input type="hidden" name="phase" value="list_emails"/>
-  First, enter the email addresses of people you would like to connect to:<br/>
-  <textarea name="emailText" rows="2" cols="40" wrap="soft"></textarea><br/>
-  <input class="button" type="submit" value="Next"/>
-</form>
+{% include "connectbox.html" %}
 
 <h4>Overall balance & available funds</h4>
 {% if accountUnits %}

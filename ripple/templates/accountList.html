@@ -15,18 +15,7 @@
 
 {% include "info.html" %}
 
-<h4>Connect to more people</h4>
-<form action="/offer/" name="creditOffer" method="post">
-  <input type="hidden" name="phase" value="list_emails"/>
-  Enter the email addresses of people you would like to offer credit to:<br/>
-  <textarea name="emailText" rows="2" cols="40" wrap="soft" id="recipient_list"></textarea><br/>
-  <a href="#" onclick="showPlaxoABChooser('recipient_list', 'site_media/plaxo_cb.html'); return false">
-    <img src="http://www.plaxo.com/images/abc/buttons/add_button.gif" alt="Add from my address book" />
-  </a>
-  <input class="button" type="submit" value="Next"/>
-</form>
-
-
+{% include "connectbox.html" %}
 
 <h4>Connection accounts</h4>
 <p>These are the accounts of connections you have already established on the system.  Click the links to view each account individually.</p>

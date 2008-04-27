@@ -9,9 +9,20 @@ from django.shortcuts import render_to_response
 from ripplesite.market.models import *
 from ripplesite.ripple.views import checkLogin, getSessionInfos
 
+def checkDealsearchAction(request):
+    try: # reload node from id every time to be safe, since it may have been changed by last request
+        action = request.GET['btn']        
+    except KeyError, NodeDoesNotExist:
+        return None
+    return action
+
 def main(request):
     "Market front page.  View all ads in the last 30 days for now."
-    userNode = checkLogin(request)
+
+
+    action = checkDealsearchAction(request)
+    if (action == 'postoffered' or action == 'postwanted') : return HttpResponseRedirect('/market/new/')
+    #userNode = checkLogin(request) return HttpResponseRedirect('/' % request.path)
     #if not userNode: return HttpResponseRedirect('/login/?redirect=%s' % request.path)
     d = {}
     cutoff_date = datetime.now() - timedelta(days=30)

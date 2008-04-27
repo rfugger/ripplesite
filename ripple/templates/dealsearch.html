@@ -1,13 +1,11 @@
-
 	    <div id="dealform">
 	      <!-- <div class="pbox"> -->
 		<!-- <form method="post" action="/searchdeals" onsubmit=
 		"return chklogin(this);" style="margin: 0pt;"> -->
-		<form method="get" action="/market/" onsubmit=
-		"return chklogin(this);" style="margin: 0pt;">
-		  <div>
+		<form method="get" action="/market/" onsubmit="return chklogin(this);" style="margin: 0pt;">
+		  <!-- <div>
 		    <input name="op" value="login_main" type="hidden">
-		  </div>
+		  </div> -->
 
 		  <table class="dealform">
 		    <tbody>
@@ -18,12 +16,11 @@
 		      </tr>
 
 		      <tr>
-			<td colspan="2"><input class="logtxt" value=
-			"massage" name="user_login" id=
-			"user_login_main" maxlength="20" type="text">
-			<input class="logtxt" value="brooklyn" id=
-			"passwd_login_main" name="passwd_login" maxlength=
-			"100" type="text"></td>
+			<td colspan="2">
+			  <input class="logtxt" value="massage" name="deal_category"
+				 maxlength="20" type="text">
+			<input class="logtxt" value="brooklyn" name="location"
+			       maxlength="100" type="text"></td>
 		      </tr>
 
 		      <tr>
@@ -34,19 +31,14 @@
 		      </tr>
 
 		      <tr>
-			<td style="float: left;"><button class="btn" name=
-			"btn_search_wanted" type="submit">search wanted</button>
-			<br>
-			<button class="btn" name= "btn_search_offered" type="submit">search
-			offered</button></td>
-
-			<td><button class="btn" name=
-			"btn_post_wanted" type="submit">post
-			wanted</button>
-			<br>
-			<button class="btn" name=
-			"btn_post_offered" type="submit">post
-			offered</button></td>
+			<td style="float: left;">
+			  <button class="btn" name="btn_search_wanted" type="submit" value=1>search wanted</button>
+			  <br>
+			  <button class="btn" name= "btn_search_offered" type="submit" value=1>search offered</button></td>
+			<td>
+			  <button class="btn" name="btn_post_wanted" type="submit" value=1>post wanted</button>
+			  <br>
+			  <button class="btn" name="btn_post_offered" type="submit" value=1>post offered</button></td>
 		      </tr>
 		    </tbody>
 		  </table>

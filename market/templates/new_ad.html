@@ -6,7 +6,15 @@
 {% include "info.html" %}
 
 <form action="." method="post">
-<p>Subject:  
+<p>Location:  
+  <input type="text" name="location" value="{{ values.title|escape }}" maxlength="255" 
+    style="width:400px;"/>
+</p>
+<p>Category:  
+  <input type="text" name="category" value="{{ values.title|escape }}" maxlength="255" 
+    style="width:400px;"/>
+</p>
+<p>Title:  
   <input type="text" name="title" value="{{ values.title|escape }}" maxlength="255" 
     style="width:400px;"/>
 </p>

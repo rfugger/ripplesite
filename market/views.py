@@ -42,8 +42,17 @@ def new_ad(request):
             errors.append('Your post must have a subject.')
         if not request.POST.get('text'):
             errors.append('Your post must have a body.')
+        if not request.POST.get('location'):
+            errors.append('Your post must have a location.')
+        if not request.POST.get('category'):
+            errors.append('Your post must have a category.')
+        if not request.POST.get('text'):
+            errors.append('Your post must have a body.')
+
         if not errors:
             ad = Advertisement(user=userNode,
+                               location=request.POST['location'],
+                               category=request.POST['category'],
                                title=request.POST['title'],
                                text=request.POST['text'])
             ad.save()
@@ -52,7 +61,7 @@ def new_ad(request):
         else:
             d['values'] = request.POST
             d['infos'] = errors
-    d['infos'] = getSessionInfos(request)
+    d['request'] = getSessionInfos(request)
     return render_to_response('new_ad.html', d, context_instance=RequestContext(request))
 
 def view_ad(request, ad_id):

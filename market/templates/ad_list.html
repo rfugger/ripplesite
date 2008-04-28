@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block title %}{{SERVICE_NAME|escape}} - Marketplace{% endblock %}
 {% block content %}
-<h3>Marketplace</h3>
+<h3>{{ values.type|capfirst}}: </h3>
 
 {% include "info.html" %}
 
 <!-- <p><a href="new/">Post a new ad</a></p> -->
-<p>Offers Ads</p>
+<!-- <p>Offers Ads</p> -->
 
 {% if ads %}
 <table class="chart">
@@ -25,6 +25,7 @@
 
 {% endblock %}
 
-{% block dealsearch %}
-    {% include "dealsearch.html" %}
-{% endblock%}
+{# block dealsearch #}
+    {# include "dealsearch.html" #}
+{# endblock#}
+

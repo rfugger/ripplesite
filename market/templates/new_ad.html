@@ -1,21 +1,22 @@
 {% extends "base.html" %}
 {% block title %}{{SERVICE_NAME|escape}} - Marketplace{% endblock %}
 {% block content %}
-<h3>Post A New Ad</h3>
+<h3>{{ values.type|capfirst }}: </h3>
 
 {% include "info.html" %}
 
-<form action="." method="post">
+<form action="/market/new/" method="post">
+  <input type="hidden" name="wanted" value="{{ values.type }}" maxlength="255"/>
 <p>Location:  
-  <input type="text" name="location" value="{{ values.title|escape }}" maxlength="255" 
+  <input type="text" name="location" value="{{ values.location }}" maxlength="255" 
     style="width:400px;"/>
 </p>
 <p>Category:  
-  <input type="text" name="category" value="{{ values.title|escape }}" maxlength="255" 
+  <input type="text" name="category" value="{{ values.category }}" maxlength="255" 
     style="width:400px;"/>
 </p>
 <p>Title:  
-  <input type="text" name="title" value="{{ values.title|escape }}" maxlength="255" 
+  <input type="text" name="title" value="{{ values.title }}" maxlength="255" 
     style="width:400px;"/>
 </p>
 <p><textarea name="text" style="width:500px; height:300px;">{{ values.text|escape }}</textarea></p>

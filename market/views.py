@@ -86,7 +86,7 @@ def main(request):
 def new_ad(request):
 
     userNode = checkLogin(request)
-    if not userNode: return HttpResponseRedirect('/login/?redirect=%s' % request.path)
+    if not userNode: return HttpResponseRedirect('/login/?redirect=/' )
     d = {}
 
     if request.method == 'POST':

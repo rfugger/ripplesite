@@ -45,5 +45,6 @@ urlpatterns = patterns(
     (r'^leaveNote/(?P<offerId>\d+)/?$', 'connection.rejectionNote'),
     (r'^offers/(?P<offerId>\d+)/(?P<action>accept|reject|withdraw)/?$', 'connection.offerAction'),
 
-    (r'^creditpath/$','creditpath')
+    (r'^creditpath/$','creditpath'),
+    (r'^inbox/$','inbox')
 )

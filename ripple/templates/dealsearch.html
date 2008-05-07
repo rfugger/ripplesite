@@ -1,61 +1,57 @@
-<div id="dealsearch">
-	    <div id="dealform">
-	      <!-- <div class="pbox"> -->
-		<!-- <form method="post" action="/searchdeals" onsubmit=
-		"return chklogin(this);" style="margin: 0pt;"> -->
-		<form method="post" action="/market/searchads" style="margin: 0pt;">
-		  <!-- <div>
-		    <input name="op" value="login_main" type="hidden">
-		  </div> -->
 
-		  <table class="dealform">
-		    <tbody>
-		      <tr>
-			<td>Deal Category</td>
+  <div id="dealsearch">
+    <div id="dealform">
+      <form method="post" action="/market/searchads" style=
+      "margin: 0pt;">
+        <table class="dealform">
+          <tbody>
+            <tr>
+              <td>Deal Category</td>
 
-			<td>Location</td>
-		      </tr>
+              <td>Location</td>
+            </tr>
 
-		      <tr>
-			<td colspan="2">
-			  <input class="logtxt" value="massage" name="deal_category"
-				 maxlength="20" type="text">
-			<input class="logtxt" value="brooklyn" name="location"
-			       maxlength="100" type="text"></td>
-		      </tr>
+            <tr>
+              <td colspan="2"><input class="logtxt" value="massage"
+              name="deal_category" maxlength="20" type="text">
+              <input class="logtxt" value="brooklyn" name=
+              "location" maxlength="100" type="text"></td>
+            </tr>
 
-		      <tr>
-			<td colspan="2"><span id=
-			"WRONG_PASSWORD_login_main" class=
-			"error"></span><span id="status_login_main" class=
-			"error"></span></td>
-		      </tr>
+            <tr>
+              <td colspan="2"><span id="WRONG_PASSWORD_login_main"
+              class="error"></span><span id="status_login_main"
+              class="error"></span></td>
+            </tr>
 
-		      <tr>
-			<td style="float: left;">
-			  <button class="btn" name="btn" type="submit" value="searchwanted">search wanted</button>
-			  <br>
-			  <button class="btn" name= "btn" type="submit" value="searchoffered">search offered</button></td>
-			<td>
-			  <button class="btn" name="btn" type="submit" value="postwanted">post wanted</button>
-			  <br>
-			  <button class="btn" name="btn" type="submit" value="postoffered">post offered</button></td>
-		      </tr>
-		    </tbody>
-		  </table>
-		</form>
-	      <!-- </div> -->
-	    </div>
+            <tr>
+              <td style="float: left;"><button class="btn" name=
+              "btn" type="submit" value="searchwanted">search
+              wanted</button><br>
+              <button class="btn" name="btn" type="submit" value=
+              "searchoffered">search offered</button></td>
 
-	    <div id="suggestions">
-	      <p>massage | carpentry | used clothing<br>
-	      cooking | moving | used books | computer help<br>
-	      <a href="category">more deal categories</a></p>
-	      <p>brooklyn | prenzlauerberg | 10364, de | germany | 10437, berlin | greenpoint, brooklyn <br>
-	      santa monica | helsinki | mexico city | bocas del toro, panama | miracle mile, los angeles<br>
-	      pacific time | north america <br>
-	      <a href="location">more locations</a></p>
-	    </div>
+              <td><button class="btn" name="btn" type="submit"
+              value="postwanted">post wanted</button><br>
+              <button class="btn" name="btn" type="submit" value=
+              "postoffered">post offered</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
 
-</div>
+    <div id="suggestions">
+      <p>massage | carpentry | used clothing<br>
+      cooking | moving | used books | computer help<br>
+      <a href="category">more deal categories</a></p>
+
+      <p>brooklyn | prenzlauerberg | 10364, de | germany | 10437,
+      berlin | greenpoint, brooklyn<br>
+      santa monica | helsinki | mexico city | bocas del toro,
+      panama | miracle mile, los angeles<br>
+      pacific time | north america<br>
+      <a href="location">more locations</a></p>
+    </div>
+  </div>
 

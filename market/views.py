@@ -67,13 +67,14 @@ def showads(request):
     return render_to_response('ad_list.html', d, context_instance=RequestContext(request))
 
 def main(request):
-    "Market front page.  View all ads in the last 30 days for now."
+    "Market front page.  Basic search form, and under that view all ads in the last 30 days."
 
     #action = checkDealsearchAction(request)
     # to do: deal with these two cases separately
 
     #userNode = checkLogin(request) return HttpResponseRedirect('/' % request.path)
     #if not userNode: return HttpResponseRedirect('/login/?redirect=%s' % request.path)
+    
     d = {}
     cutoff_date = datetime.now() - timedelta(days=30)
     ads = Advertisement.objects.filter(posted_date__gt=cutoff_date)
@@ -82,7 +83,8 @@ def main(request):
     d['infos'] = getSessionInfos(request)
     
     return render_to_response('ad_list.html', d, context_instance=RequestContext(request))
-
+    
+    #return HttpResponseRedirect('/market/searchads')
 def new_ad(request):
 
     userNode = checkLogin(request)

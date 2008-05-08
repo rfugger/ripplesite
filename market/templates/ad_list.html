@@ -17,7 +17,7 @@
 
     {% if ads %}
 	<table class="chart">
-	<tr><th>Title</th><th>Location</th><th>Category</th><th>Date Posted</th></tr>
+	<!-- <tr><th>Title</th><th>Location</th><th>Category</th><th>Date</th></tr> -->
 	{% for ad in ads %}
 	    <tr><td><a href="{{ ad.id }}/">{{ ad.title }}</a></td>
 		<td><a href="location/{{ ad.location }}/">{{ ad.location }}</a></td>

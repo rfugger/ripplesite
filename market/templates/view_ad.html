@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block title %}{{ SERVICE_NAME }} - Marketplace{% endblock %}
 {% block content %}
-    <h3>{{ ad.title }}</h3>
+
 
     {% include "info.html" %}
+
+    <h3>{{ ad.title }}</h3>
 
     <p style="font-size:smaller;"><i>Posted by {{ ad.user.name }}
 	on {{ ad.posted_date|date:"d M Y"}}.</i></p>
@@ -11,17 +13,17 @@
 
 
     {% ifequal userNode None %}
-        <a href="/login?redirect={{request.path}}">Contact poster about this ad</a>
+        <p><a href="/login?redirect={{request.path}}">send message / record iou</a></p>
     {% else %}
         
 	{% ifnotequal userNode ad.user %}
-	    <h4>Contact poster about this ad</h4>
 	    <form action="." method="post">
 	    <textarea name="body" style="width:500px; height:80px;">{{ values.body }}</textarea>
-	    <p><input class="button" type="submit" value="Send" /></p>
+	    <p><input class="button" type="submit" value="message poster" /></p>
+            <p><input class="button" type="submit" value="record iou to poster" /></p>
 	    </form>
 
-	    <p><a href="/payUser/{{ ad.user.id }}/">Pay seller</a></p>
+	    <!-- <p><a href="/payUser/{{ ad.user.id }}/">Pay seller</a></p> -->
 	{% else %}
 	    <h4>Edit your ad</h4>
 	    <!-- <form action="." method="post">
@@ -36,4 +38,5 @@
 
 
     <!-- <p><a href="../">Return to marketplace main page</a></p> -->
+
 {% endblock %}

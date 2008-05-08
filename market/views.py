@@ -1,13 +1,15 @@
 "Marketplace views."
 
 from datetime import datetime, timedelta
+from django.core import template_loader
+from django.core.mail import send_mail
 
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-
+from django.conf import settings
 from ripplesite.market.models import *
-from ripplesite.ripple.views import checkLogin, getSessionInfos
+from ripplesite.ripple.views import checkLogin, getSessionInfos, sendEmail
 
 """
 def checkDealsearchAction(request):
@@ -143,10 +145,32 @@ def view_ad(request, ad_id):
     try:
         ad = Advertisement.objects.get(pk=ad_id)
     except Advertisement.DoesNotExist:
-        return HttpResponseRedirect('../')
+        return HttpResponseRedirect('/market/')
 
-    
-    if request.method == 'POST':
+
+    # contacting user about a post. (to do: add functionality for editing own post if logged in as poster)
+    if request.method == 'POST': 
+
+        d['values'] = request.POST
+        d['ad_url'] = "http://" + settings.SITE_NAME + request.path
+        #d['viewer_email'] = d['userNode'].getPrimaryEmail()
+        #print "viewer email: " 
+        #print viewer_email
+        #d['msg'] = d['values']['body']
+        #print "msg: " + msg
+
+        # I would like to there to be an error if any of the keys doesn't exist. 
+
+        t = template_loader.get_template('emailMsg.txt')
+        c = RequestContext(request, {'req': d})
+
+
+        print (t.render(c))
+
+
+        sendEmail("Someone answered your ad", t.render(c), (ad.user.getPrimaryEmail() ) )
+        
+
         # *** todo: actually send an email here.
         request.session['infos'] = ['Your message has been sent to the seller.']
         return HttpResponseRedirect('.')

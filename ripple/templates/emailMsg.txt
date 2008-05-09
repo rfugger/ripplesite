@@ -1,0 +1,5 @@
+You have a message from {{req.userNode.getPrimaryEmail }} concerning your advertisement at {{req.ad_url}}: 
+
+{{ req.values.body }}
+
+{% include "sig.txt" %}

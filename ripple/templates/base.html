@@ -9,10 +9,6 @@
 </head>
 
 <body>
-<!-- <div id="wrap"> -->
-    <!-- <div id="title"> -->
-    <!--       <a href="/"><img src="/site_media/logo3.{% if iexplorer %}gif{% else %}png{% endif %}" /></a> -->
-    <!--     </div> -->
 
     <div id="header">
       <!-- <img src="/site_media/ripplelogo.jpg"><img src="/site_media/RippleDealsBETA.png"> -->
@@ -22,8 +18,9 @@
       <h4> <a href="/" class="leftitem">Home</a>
 	   |<a href="/about/">About</a>
 	   |<a href="/faq/">FAQ</a>
-	   |<a href="/donate/">Donate</a>
+	   <!-- |<a href="/donate/">Donate</a> -->
 	   |<a href="/contact/">Contact</a>
+           |<a href="/market/">Marketplace</a>
       </h4>
       <h4>
 	  {% if userNode %}
@@ -32,26 +29,20 @@
 	  |<a href="/accounts/">Connections</a>
 	  |<a href="/payments/">Payments</a>
 	  |<a href="/profile/">Profile</a>
+          |<a href="/inbox/">&nbsp<img src="/site_media/inbox-nomail.png">&nbsp</a>
 	  |<a href="/logout/">Log out</a>
 	  {% else %}
 	  <a href="/login/" class="leftitem">Log in</a>
 	  |<a href="/register/">Sign up</a>	  
 	  {% endif %}
-          |<a href="/market/searchads">Marketplace</a>
+          
       </h4>
     </div>
 
-    <div id="content">
+    <div id="content"> 
 	{% block content %}
 	{% endblock %}
-    </div>
-    <div id="dealsearch">
-        {% block dealsearch %}
-	{% endblock %}
-    </div>
-
-
-    <!-- <hr id="pad"/> -->
+    </div> 
 
     <div id="footer">
     {% block footer %}

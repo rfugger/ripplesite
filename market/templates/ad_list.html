@@ -1,31 +1,37 @@
 {% extends "base.html" %}
 {% block title %}{{SERVICE_NAME|escape}} - Marketplace{% endblock %}
 {% block content %}
-<h3>{{ values.type|capfirst}}: </h3>
 
-{% include "info.html" %}
 
-<!-- <p><a href="new/">Post a new ad</a></p> -->
-<!-- <p>Offers Ads</p> -->
+    {% include "dealsearch.html" %}
+    <h3>
+	{% if values.type %}
+	    {{ values.type|capfirst}}: 
+	{% endif %}
+    </h3>
 
-{% if ads %}
-<table class="chart">
-<tr><th>Title</th><th>Location</th><th>Category</th><th>Date Posted</th></tr>
-{% for ad in ads %}
-<tr><td><a href="{{ ad.id }}/">{{ ad.title }}</a></td>
-    <td><a href="location/{{ ad.location }}/">{{ ad.location }}</a></td>
-    <td><a href="category/{{ ad.category }}/">{{ ad.category }}</a></td>
-    <td>{{ ad.posted_date|date:"d M Y" }}</td>
-</tr>
-{% endfor %}
-</table>
-{% else %}
-<p><i>No ads in the system yet.</i></p>
-{% endif %}
+    {% include "info.html" %}
 
+    <!-- <p><a href="new/">Post a new ad</a></p> -->
+    <!-- <p>Offers Ads</p> -->
+
+    {% if ads %}
+	<table class="chart">
+	<!-- <tr><th>Title</th><th>Location</th><th>Category</th><th>Date</th></tr> -->
+	{% for ad in ads %}
+	    <tr><td><a href="{{ ad.id }}/">{{ ad.title }}</a></td>
+		<td><a href="location/{{ ad.location }}/">{{ ad.location }}</a></td>
+		<td><a href="category/{{ ad.category }}/">{{ ad.category }}</a></td>
+		<td>{{ ad.posted_date|date:"d M Y" }}</td>
+	    </tr>
+	{% endfor %}
+	</table>
+    {% else %}
+	<p><i>No ads in the system yet.</i></p>
+    {% endif %}
+
+    
 {% endblock %}
 
-{# block dealsearch #}
-    {# include "dealsearch.html" #}
-{# endblock#}
+
 

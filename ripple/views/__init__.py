@@ -25,6 +25,7 @@ def creditpath(request):
 def home(request):
     userNode = checkLogin(request)
     d = {}
+    """
     if not userNode: # not logged in - show home page
         request.session.set_test_cookie()        
         # some usage data for front page
@@ -33,9 +34,14 @@ def home(request):
         d['num_payments'] = Payment.objects.count()
         
         d['HOME_INTRO_TEXT'] = settings.HOME_INTRO_TEXT
+    """
+
     return render_to_response('home.html', d, context_instance=RequestContext(request))
-    # else: # logged in - show Summary
-    #    return HttpResponseRedirect('/summary/')
+
+def inbox(request):
+    userNode = checkLogin(request)
+    d = {}
+    return render_to_response('inbox.html', d, context_instance=RequestContext(request))
 
 def summary(request):
     """The users home page"""

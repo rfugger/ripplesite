@@ -1,13 +1,15 @@
 "Marketplace views."
 
 from datetime import datetime, timedelta
+from django.core import template_loader
+from django.core.mail import send_mail
 
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-
+from django.conf import settings
 from ripplesite.market.models import *
-from ripplesite.ripple.views import checkLogin, getSessionInfos
+from ripplesite.ripple.views import checkLogin, getSessionInfos, sendEmail
 
 """
 def checkDealsearchAction(request):
@@ -67,13 +69,14 @@ def showads(request):
     return render_to_response('ad_list.html', d, context_instance=RequestContext(request))
 
 def main(request):
-    "Market front page.  View all ads in the last 30 days for now."
+    "Market front page.  Basic search form, and under that view all ads in the last 30 days."
 
     #action = checkDealsearchAction(request)
     # to do: deal with these two cases separately
 
     #userNode = checkLogin(request) return HttpResponseRedirect('/' % request.path)
     #if not userNode: return HttpResponseRedirect('/login/?redirect=%s' % request.path)
+    
     d = {}
     cutoff_date = datetime.now() - timedelta(days=30)
     ads = Advertisement.objects.filter(posted_date__gt=cutoff_date)
@@ -82,11 +85,12 @@ def main(request):
     d['infos'] = getSessionInfos(request)
     
     return render_to_response('ad_list.html', d, context_instance=RequestContext(request))
-
+    
+    #return HttpResponseRedirect('/market/searchads')
 def new_ad(request):
 
     userNode = checkLogin(request)
-    if not userNode: return HttpResponseRedirect('/login/?redirect=%s' % request.path)
+    if not userNode: return HttpResponseRedirect('/login/?redirect=/' )
     d = {}
 
     if request.method == 'POST':
@@ -141,10 +145,32 @@ def view_ad(request, ad_id):
     try:
         ad = Advertisement.objects.get(pk=ad_id)
     except Advertisement.DoesNotExist:
-        return HttpResponseRedirect('../')
+        return HttpResponseRedirect('/market/')
 
-    
-    if request.method == 'POST':
+
+    # contacting user about a post. (to do: add functionality for editing own post if logged in as poster)
+    if request.method == 'POST': 
+
+        d['values'] = request.POST
+        d['ad_url'] = "http://" + settings.SITE_NAME + request.path
+        #d['viewer_email'] = d['userNode'].getPrimaryEmail()
+        #print "viewer email: " 
+        #print viewer_email
+        #d['msg'] = d['values']['body']
+        #print "msg: " + msg
+
+        # I would like to there to be an error if any of the keys doesn't exist. 
+
+        t = template_loader.get_template('emailMsg.txt')
+        c = RequestContext(request, {'req': d})
+
+
+        print (t.render(c))
+
+
+        sendEmail("Someone answered your ad", t.render(c), (ad.user.getPrimaryEmail() ) )
+        
+
         # *** todo: actually send an email here.
         request.session['infos'] = ['Your message has been sent to the seller.']
         return HttpResponseRedirect('.')

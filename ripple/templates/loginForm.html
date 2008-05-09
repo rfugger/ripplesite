@@ -1,6 +1,6 @@
 <h4>Login</h4>
 <form action = "/login/" name="login" method="post">
-  <input type="hidden" name="redirect" value={% if redirect %}"{{redirect|escape}}"{% else %}"/summary/"{% endif %}/>
+  <input type="hidden" name="redirect" value={% if redirect %}"{{redirect|escape}}"{% else %}"/"{% endif %}/>
   <table class="layout">
     <tr><td>Username or Email Address</td>
       <td><input type="text" name="username" {% if username %}value="{{username|escape}}"{% endif %}/></td></tr>

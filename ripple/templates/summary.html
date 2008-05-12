@@ -9,11 +9,16 @@
 
 {% include "info.html" %}
 
-<p>You are connected to <a href="/accounts/"><b>{{numAccounts}}</b> other Ripple user{{numAccounts|pluralize}}.</a></p>
+<p>
+  You have a credit relationship with
+  <a href="/accounts/"><b>{{numAccounts}}</b> other Ripple user{{numAccounts|pluralize}}.</a>
+</p>
 
+<!-- 
 <h4>New connections</h4>
 <p>Here you will find a list of those who have recently invited you to connect with them.
 You may accept or reject invitations by clicking the links.</p>
+
 
 {% if receivedOffers %}
 <table class="chart">
@@ -31,7 +36,8 @@ You may accept or reject invitations by clicking the links.</p>
 </table>
 {% else %}<p><i>No new offers of credit received.</i></p>
 {% endif %}
-<p><a href="/accounts/#offers">View sent invitations</a></p>
+-->
+<!-- <p><a href="/accounts/#offers">View sent invitations</a></p> -->
 
 {% if rateProposals %}
 <table class="chart">
@@ -65,9 +71,11 @@ You may accept or reject invitations by clicking the links.</p>
 </table>
 {% endif %}
 
+<!-- 
 <a name="offer"></a>
 <p>You must create connection accounts with others in order to send and receive payment.</p>
 {% include "connectbox.html" %}
+
 
 <h4>Overall balance & available funds</h4>
 {% if accountUnits %}
@@ -98,6 +106,7 @@ You may accept or reject invitations by clicking the links.</p>
 {% else %}
 <p><i>No accounts yet.</i> <a href="/accounts/">Connect to those you trust</a></p>
 {% endif %}
+-->
 
 <p><a href="/accounts/">View and edit connections</a></p>
 

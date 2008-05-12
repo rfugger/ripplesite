@@ -9,42 +9,42 @@
     // OPTIONAL: do something here after the new data has been populated in your text area
   }--></script>
 {% endblock %}
-{% block title %}{{SERVICE_NAME|escape}} - Connections{% endblock %}
+{% block title %}{{SERVICE_NAME|escape}} - Credit Relationships {% endblock %}
 {% block content %}
-<h3>Connections</h3>
+<h3>Credit Relationships</h3>
 
 {% include "info.html" %}
 
-{% include "connectbox.html" %}
-
-<h4>Connection accounts</h4>
-<p>These are the accounts of connections you have already established on the system.  Click the links to view each account individually.</p>
+<!-- <h4>Connection accounts</h4> -->
+<!-- <p>These are the accounts of connections you have already established on the system.  Click the links to view each account individually.</p> -->
 {% if accountCurrencies %}
-<table class="chart">
+<table class="chart" border=1>
 {% for cur in accountCurrencies %}
   <tr class="spantitle"><td colspan="5">{{cur.long_name|escape}} accounts</td></tr>
-  <tr><th>ID</td><th>Name</th><th>Lower limit</th><th>Balance</th><th>Upper limit</th></tr>
+  <tr><th>ID</td><th>Name</th><th>My Limit With Them</th><th>Balance</th><th>Their Limit With Me</th></tr>
   {% for acct in cur.accts %}
   <tr {% if forloop.counter|divisibleby:"2" %}class="even"{% endif %}>
-    <td class="num"><a href="/accounts/{{acct.id}}/">{{acct.shared_data_id}}</a></td>
-    <td><a href="/accounts/{{acct.id}}/">{{acct.name|escape}}</a></td>
+    <td class="num"><!-- <a href="/accounts/{{acct.id}}/"> --> {{acct.shared_data_id}} <!-- </a> --></td>
+    <td><a href="/accounts/{{acct.id}}/">{{acct.name}}</a></td>
     <td class="num">-{{acct.iou_limit|myStrFormat:".2f"}}</td>
-    <td class="num"><b>{{acct.balance|myStrFormat:".2f"}}</b></td>
+    <td class="num">{{acct.balance|myStrFormat:".2f"}}</td>
     <td class="num">{{acct.get_partner_acct.iou_limit|myStrFormat:".2f"}}</td>
-    <td><a href="/accounts/{{acct.id}}/">details
+    <!-- <td><a href="/accounts/{{acct.id}}/">details
       {% if acct.shared_data.node_to_confirm_id %}{% ifequal userNode.id acct.shared_data.node_to_confirm_id %}
         (new rate proposed)
       {% endifequal %}{% endif %}
-    </a></td>
+    </a></td> -->
   </tr>
   {% endfor %}
-  <tr><th colspan="2">Totals:</th><th class="num">-{{cur.lowerLimit|myStrFormat:".2f"}}</th>
+  <!-- <tr><th colspan="2">Totals:</th><th class="num">-{{cur.lowerLimit|myStrFormat:".2f"}}</th>
     <th class="num"><b>{{cur.balance|myStrFormat:".2f"}}</b></th>
-    <th class="num">{{cur.upperLimit|myStrFormat:".2f"}}</th></tr>
+    <th class="num">{{cur.upperLimit|myStrFormat:".2f"}}</th></tr> -->
 {% endfor %}
 </table>
 {% else %}<p><i>No accounts yet.  To create accounts, you must invite people to connect with you above.</i></p>
 {% endif %}
+
+{% include "connectbox.html" %}
 
 <a name="offers"></a>
 <h4>Outstanding invitations</h4>

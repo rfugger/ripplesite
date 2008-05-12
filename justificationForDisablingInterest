@@ -1,0 +1,15 @@
+In the fork I'm working on at 
+
+http://github.com/tphyahoo/ripplesite/commits/rippledeals
+
+I am disabling ripplepay's interest features, in anticipation of the website eventually being essentially an accounting and social networking front end, and payment routing taking place on what I am calling rippled, the ripple server. Once that's in place, I might then re-enable interest payments, but in a more flexible way. EG, this might allow such things as net-30, net-60 () like at
+
+eg http://www.sitepoint.com/forums/showthread.php?t=432424 ("2% 10 days Net 30, which means deduct 2% if you pay within 10 days, full balance due in 30 from invoice date")
+
+rather than the rather rigid interest model currently in place. Essentially, interest should be seen as an incentive to settle debts, but there's many ways to do it. 
+
+By the way the main reason I'm disabling interest is something seems to have broken when I upgraded django when I view a connections detail, so I'm just taking the easy way out and disabling this functionality, since this is something I was considering doing anyway.
+
+I'm curious how 
+
+Thomas.

@@ -87,6 +87,10 @@ def main(request):
     return render_to_response('ad_list.html', d, context_instance=RequestContext(request))
     
     #return HttpResponseRedirect('/market/searchads')
+
+def sendmoney(request):
+    return main(request)
+
 def new_ad(request):
 
     userNode = checkLogin(request)

@@ -7,4 +7,5 @@ urlpatterns = patterns(
     (r'showads','showads'),
     (r'^new', 'new_ad'),
     (r'^(\d+)/$', 'view_ad'),
+    (r'^sendmoney', 'sendmoney'),
 )

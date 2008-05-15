@@ -38,6 +38,9 @@ def home_interpersonal(request):
 
     return render_to_response('home_interpersonal.html', d, context_instance=RequestContext(request))
 
+def home_sendmoney(request):
+    return HttpResponseRedirect('/market/sendmoney' )
+
 def inbox(request):
     userNode = checkLogin(request)
     d = {}

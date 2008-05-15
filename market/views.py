@@ -89,7 +89,14 @@ def main(request):
     #return HttpResponseRedirect('/market/searchads')
 
 def sendmoney(request):
-    return main(request)
+    "Remittances over ripplepay."
+    d = {}
+    cutoff_date = datetime.now() - timedelta(days=30)
+    ads = Advertisement.objects.filter(posted_date__gt=cutoff_date)
+    ads = ads.order_by('-posted_date')
+    d['ads'] = ads
+    d['infos'] = getSessionInfos(request)
+    return render_to_response('sendmoney.html', d, context_instance=RequestContext(request))
 
 def new_ad(request):
 

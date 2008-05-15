@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns(
     'ripplesite.ripple.views',
-    (r'^$', 'home'),
+    (r'^$', 'home_interpersonal'),
     (r'^login/?$', 'login'), # handles both GET and POST
     (r'^logout/?$', 'logout'),
     (r'^register/?$', 'register'), # handles both GET and POST

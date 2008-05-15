@@ -22,7 +22,7 @@ from socket import gaierror
 def creditpath(request):
     return render_to_response('creditpath.html')
 
-def home(request):
+def home_interpersonal(request):
     userNode = checkLogin(request)
     d = {}
     """
